@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  rabbitmq:
+    hostname: rabbitmq
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    volumes:
+      - ./.docker/rabbitmq/etc/:/etc/rabbitmq/
+      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
+    environment:
+      RABBITMQ_DEFAULT_USER: username
+      RABBITMQ_DEFAULT_PASS: password
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    expose:
+      - "5672"
+
+  orderservice:
+    hostname: orderservice
+    build:
+      context: ./FS-OrdersService/OrderService
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+      - "4002:4002"
+    environment:
+      - ASPNETCORE_URLS=https://+:5002;http://+:4002
+      - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
