@@ -34,7 +34,6 @@ namespace TweetService.Api
                 x.UsingRabbitMq((cfx, cnf) =>
                 {
                     cnf.Host(Environment.GetEnvironmentVariable("RabbitMqConnectionString"));
-
                 });
             });
 

@@ -19,9 +19,15 @@ namespace TweetService.Data
 
         public async Task DeleteTweetAsync(Guid guid)
         {
-            _repo.Tweets.Remove(await _repo.Tweets.FindAsync(guid));
+            var tweet = await _repo.Tweets.FindAsync(guid);
+            if (tweet != null)
+            {
+                _repo.Tweets.Remove(tweet);
 
-            await _repo.SaveChangesAsync();
+                await _repo.SaveChangesAsync();
+            }
+
+            throw new Exception($"Tweet with id '{guid}' not found!");
 
         }
 
