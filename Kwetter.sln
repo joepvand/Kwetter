@@ -23,15 +23,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TweetService.DomainModel", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TweetService.Application", "TweetService\TweetService.Application\TweetService.Application.csproj", "{FF560F73-8CDF-4299-A8D8-80364A9398EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetService.Test", "TweetService\TweetService.Test\TweetService.Test.csproj", "{CFA14CFB-4B86-47DA-A107-3773B3DEFB75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TweetService.Test", "TweetService\TweetService.Test\TweetService.Test.csproj", "{CFA14CFB-4B86-47DA-A107-3773B3DEFB75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{B73D7F4D-FEEE-47BD-B23C-C52583ECC01D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helpers", "Helpers\Helpers.csproj", "{B73D7F4D-FEEE-47BD-B23C-C52583ECC01D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NotificationService", "NotificationService", "{0E85B2BD-01B8-41FE-A209-3D3378A609DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService.Api", "NotificationService\NotificationService.Api\NotificationService.Api.csproj", "{544872A2-BA8E-41BF-A315-8B03325E8784}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationService.Api", "NotificationService\NotificationService.Api\NotificationService.Api.csproj", "{544872A2-BA8E-41BF-A315-8B03325E8784}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagingModels", "MessagingModels\MessagingModels.csproj", "{BF14D24D-769D-4B1F-B82E-8DDF95EA3AB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessagingModels", "MessagingModels\MessagingModels.csproj", "{BF14D24D-769D-4B1F-B82E-8DDF95EA3AB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{21A9D5E2-4441-4C34-9A57-FDB73B82FE4C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
