@@ -9,22 +9,37 @@ services:
       - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
       - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
     environment:
-      RABBITMQ_DEFAULT_USER: username
-      RABBITMQ_DEFAULT_PASS: password
+      - RABBITMQ_DEFAULT_USER=username
+      - RABBITMQ_DEFAULT_PASS=password
     ports:
       - "5672:5672"
       - "15672:15672"
     expose:
       - "5672"
-
-  orderservice:
-    hostname: orderservice
+  authservice:
+    hostname: authservice
     build:
-      context: ./FS-OrdersService/OrderService
-      dockerfile: Dockerfile
+      dockerfile: AuthService.Dockerfile
     ports:
-      - "5002:5002"
       - "4002:4002"
     environment:
-      - ASPNETCORE_URLS=https://+:5002;http://+:4002
+      - ASPNETCORE_URLS=http://+:4002
+      - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
+  tweetservice:
+    hostname: tweetservice
+    build:
+      dockerfile: TweetService.Dockerfile
+    ports:
+      - "4003:4003"
+    environment:
+      - ASPNETCORE_URLS=http://+:4003
+      - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
+  notificationservice:
+    hostname: NotificationService
+    build:
+      dockerfile: NotificationService.Dockerfile
+    ports:
+      - "4004:4004"
+    environment:
+      - ASPNETCORE_URLS=http://+:4004
       - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
