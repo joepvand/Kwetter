@@ -33,7 +33,7 @@ namespace TweetService.Api
             {
                 x.UsingRabbitMq((cfx, cnf) =>
                 {
-                    cnf.Host(Environment.GetEnvironmentVariable("RabbitMqConnectionString"));
+                    cnf.Host(Environment.GetEnvironmentVariable("RabbitMQConnectionString"));
                 });
             });
 
@@ -47,8 +47,6 @@ namespace TweetService.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 

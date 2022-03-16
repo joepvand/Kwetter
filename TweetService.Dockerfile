@@ -8,6 +8,11 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["TweetService/TweetService.Api/TweetService.Api.csproj", "TweetService/TweetService.Api/"]
+COPY ["TweetService/TweetService.Model/TweetService.DomainModel.csproj", "TweetService/TweetService.Model/"]
+COPY ["Helpers/Helpers.csproj", "Helpers/"]
+COPY ["TweetService/TweetService.Data/TweetService.Data.csproj", "TweetService/TweetService.Data/"]
+COPY ["MessagingModels/MessagingModels.csproj", "MessagingModels/"]
+COPY ["TweetService/TweetService.Application/TweetService.Application.csproj", "TweetService/TweetService.Application/"]
 RUN dotnet restore "TweetService/TweetService.Api/TweetService.Api.csproj"
 COPY . .
 WORKDIR "/src/TweetService/TweetService.Api"
