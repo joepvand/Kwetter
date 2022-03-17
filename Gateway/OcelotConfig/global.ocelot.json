@@ -1,0 +1,43 @@
+﻿{
+  //Routing
+  "Routes": [
+    
+    //Tweet API with downroute
+    {
+      "DownstreamPathTemplate": "/Tweet/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "4003"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Tweet/{everything}",
+      "Key": "TweetDownroute"
+    },
+    //Tweet API
+    {
+      "DownstreamPathTemplate": "/Tweet",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "4003"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Tweet",
+      "Key": "Tweet",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "claims_userid": "Claims[id] > value > |"
+      }
+    }
+  ],
+  //GLOBAL CONFIG
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:4000"
+  }
+}

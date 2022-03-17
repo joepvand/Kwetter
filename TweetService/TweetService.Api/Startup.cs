@@ -3,6 +3,8 @@ using TweetService.Application;
 using TweetService.Data;
 using TweetService.Data.Context;
 using MassTransit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 namespace TweetService.Api
 {
     public class Startup
@@ -17,6 +19,7 @@ namespace TweetService.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers();
             services.AddDbContext<TweetContext>(options =>
             {
@@ -28,7 +31,7 @@ namespace TweetService.Api
             services.AddTransient<TweetApplication>();
 
             services.AddTransient<IEventSender, EventSender>();
-
+            
             services.AddMassTransit(x =>
             {
                 x.UsingRabbitMq((cfx, cnf) =>
@@ -41,7 +44,7 @@ namespace TweetService.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TweetContext context)
         {
             if (env.IsDevelopment())
             {
@@ -50,9 +53,9 @@ namespace TweetService.Api
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            context.Database.Migrate();
         }
     }
 }

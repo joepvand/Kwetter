@@ -27,7 +27,7 @@ namespace TweetService.Application
             return this.tweetRepository.DeleteTweetAsync(guid);
         }
 
-        public List<Tweet> GetTweetByUser(Guid userId)
+        public List<Tweet> GetTweetByUser(string userId)
         {
             return this.tweetRepository.GetTweetsByUser(userId)
                 .Select(x=> new Tweet(x.TweeterId, x.Body)).ToList();
@@ -36,7 +36,7 @@ namespace TweetService.Application
         public List<Tweet> GetTweets()
         {
             return this.tweetRepository.GetTweets()
-                .Select(x => new Tweet(x.TweeterId, x.Body)).ToList(); ;
+                .Select(x => new Tweet(x.TweeterId, x.Body)).ToList();
         }
     }
 }

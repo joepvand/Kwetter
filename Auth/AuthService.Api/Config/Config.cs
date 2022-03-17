@@ -20,7 +20,8 @@ namespace AuthService.Config
             {
                 new ApiResource("myresourceapi", "My Resource API")
                 {
-                    Scopes = {"apiscope","scope2"}
+                    Scopes = {"apiscope","scope2"},
+                    UserClaims = new List<string> {"foo"}
                 }
             };
         }
@@ -38,7 +39,10 @@ namespace AuthService.Config
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = { "apiscope" }
+                    AllowedScopes = { "apiscope" },
+                    AlwaysIncludeUserClaimsInIdToken = true,
+                    AlwaysSendClientClaims = true,
+
                 },
 
                  new Client
@@ -49,7 +53,10 @@ namespace AuthService.Config
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = { "apiscope" }
+                    AllowedScopes = { "apiscope" },
+                    AlwaysIncludeUserClaimsInIdToken = true,
+                    AlwaysSendClientClaims = true,
+
                 }
             };
         }

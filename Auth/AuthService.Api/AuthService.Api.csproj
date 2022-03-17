@@ -10,6 +10,13 @@
 	  <UserSecretsId>f21ccdf0-c272-414f-ba69-6c4c9c1f518d</UserSecretsId>
 
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\**" />
+    <Content Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="IdentityServer4" Version="4.1.2" />
 		<PackageReference Include="IdentityServer4.AspNetIdentity" Version="4.1.2" />
@@ -38,9 +45,6 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\AuthService.Application\AuthService.Application.csproj" />
 	  <ProjectReference Include="..\AuthService.Data\AuthService.Data.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Models\" />
 	</ItemGroup>
 
 </Project>

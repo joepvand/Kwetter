@@ -25,6 +25,20 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:4002
       - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
+      - ConnectionStrings:DefaultConnection=Server=auth_db;Port=5433;Database=kwetter.AuthService;User Id=postgres;Password=postgres;
+  auth_db:
+    hostname: auth_db
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5433:5432'
+    expose:
+      - '5433'
+    volumes: 
+      - auth_db:/var/lib/postgresql/data
   tweetservice:
     hostname: tweetservice
     build:
@@ -34,6 +48,18 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:4003
       - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
+      - ConnectionStrings:DefaultConnection=Server=tweet_db;Port=5432;Database=kwetter.TweetService;User Id=postgres;Password=postgres;
+  tweet_db:
+    hostname: tweet_db
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - tweet_db:/var/lib/postgresql/data
   notificationservice:
     hostname: NotificationService
     build:
@@ -43,3 +69,15 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:4004
       - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
+  gateway:
+      build:
+        dockerfile: Gateway.Dockerfile
+      ports:
+        - "4000:4000"
+      environment:
+        - ASPNETCORE_URLS=http://+:4000
+volumes:
+  tweet_db:
+    driver: local
+  auth_db:
+    driver: local

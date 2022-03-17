@@ -11,7 +11,7 @@ namespace TweetService.Data.Models
     {
         [Key]
         public Guid Id { get; set; }
-        public Guid TweeterId { get; set; }
+        public string TweeterId { get; set; }
         public string Body { get; set; }
     }
 }

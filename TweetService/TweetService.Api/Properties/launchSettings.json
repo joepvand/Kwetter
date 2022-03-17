@@ -15,7 +15,7 @@
         "RabbitMQConnectionString": "amqp://username:password@rabbitmq:5672",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:7039;http://localhost:5039",
+      "applicationUrl": "http://localhost:4003",
       "dotnetRunMessages": true
     },
     "IIS Express": {

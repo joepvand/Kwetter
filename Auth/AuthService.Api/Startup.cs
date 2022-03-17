@@ -40,7 +40,7 @@ namespace AuthService.Api
             services.AddScoped<IProfileRepository, ProfileRepository>();
             services.AddIdentityServer()
                     .AddDeveloperSigningCredential()
-                  .AddInMemoryApiResources(Config.Config.GetApiResources())
+                    .AddInMemoryApiResources(Config.Config.GetApiResources())
           .AddInMemoryApiScopes(Config.Config.GetApiScopes())
 
           .AddAspNetIdentity<ApplicationUser>()
@@ -68,7 +68,7 @@ namespace AuthService.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AuthContext context)
         {
             if (env.IsDevelopment())
             {
@@ -87,6 +87,8 @@ namespace AuthService.Api
                 endpoints.MapControllers();
                 endpoints.MapDefaultControllerRoute();
             });
+
+            context.Database.Migrate();
         }
     }
 }

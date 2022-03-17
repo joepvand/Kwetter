@@ -41,7 +41,7 @@ namespace TweetService.Data
 
         }
 
-        public IReadOnlyCollection<Tweet> GetTweetsByUser(Guid userId)
+        public IReadOnlyCollection<Tweet> GetTweetsByUser(string userId)
         {
             return _repo.Tweets.Where(tweet => tweet.TweeterId == userId).ToList();
         }

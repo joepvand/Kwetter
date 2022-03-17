@@ -6,14 +6,14 @@ namespace TweetService.DomainModel
 {
     public class Tweet
     {
-        public Tweet(Guid tweeterId, string body)
+        public Tweet(string tweeterId, string body)
         {
             TweeterId = tweeterId;
             Body = body;
 
             this.Validate<Tweet, TweetValidator>();
         }
-        public Guid TweeterId { get; }
+        public string TweeterId { get; }
         public string Body { get; }
     }
 
