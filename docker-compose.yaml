@@ -6,7 +6,7 @@ services:
     container_name: rabbitmq
     volumes:
       - ./.docker/rabbitmq/etc/:/etc/rabbitmq/
-      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/mnesia
       - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
     environment:
       - RABBITMQ_DEFAULT_USER=username

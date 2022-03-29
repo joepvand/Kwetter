@@ -41,14 +41,14 @@ namespace TweetService.Data
 
         }
 
-        public IReadOnlyCollection<Tweet> GetTweetsByUser(string userId)
+        public IQueryable<Tweet> GetTweetsByUser(string userId)
         {
-            return _repo.Tweets.Where(tweet => tweet.TweeterId == userId).ToList();
+            return _repo.Tweets.Where(tweet => tweet.TweeterId == userId);
         }
 
-        public IReadOnlyCollection<Tweet> GetTweets()
+        public IQueryable<Tweet> GetTweets()
         {
-            return _repo.Tweets.ToList();
+            return _repo.Tweets;
         }
     }
 }

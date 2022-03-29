@@ -10,17 +10,17 @@
   "profiles": {
     "TweetService.Api": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "environmentVariables": {
-        "RabbitMQConnectionString": "amqp://username:password@rabbitmq:5672",
+        "RabbitMQConnectionString": "amqp://username:password@127.0.0.1:5672",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:4003",
+      "applicationUrl": "http://localhost:4001",
       "dotnetRunMessages": true
     },
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

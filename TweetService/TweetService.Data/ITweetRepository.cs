@@ -11,7 +11,7 @@ namespace TweetService.Data
     {
         public Task AddTweetAsync(Tweet tweet);
         public Task DeleteTweetAsync(Guid guid);
-        public IReadOnlyCollection<Tweet> GetTweets();
-        public IReadOnlyCollection<Tweet> GetTweetsByUser(string userId);
+        public IQueryable<Tweet> GetTweets();
+        public IQueryable<Tweet> GetTweetsByUser(string userId);
     }
 }

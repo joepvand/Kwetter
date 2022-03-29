@@ -20,12 +20,18 @@ namespace TweetService.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers(opt =>
+            {
+                opt.RespectBrowserAcceptHeader = true;
+            })
+                    .AddXmlSerializerFormatters();
+            ;
             services.AddDbContext<TweetContext>(options =>
             {
                 var connString = Configuration.GetConnectionString("DefaultConnection");
                 options.UseNpgsql(connString);
             });
+
             services.AddTransient<Data.ITweetRepository, TweetRepository>();
 
             services.AddTransient<TweetApplication>();
@@ -39,8 +45,12 @@ namespace TweetService.Api
                     cnf.Host(Environment.GetEnvironmentVariable("RabbitMQConnectionString"));
                 });
             });
-
-            services.AddMassTransitHostedService();
+            services.Configure<MassTransitHostOptions>(options =>
+            {
+                options.WaitUntilStarted = true;
+                options.StartTimeout = TimeSpan.FromSeconds(30);
+                options.StopTimeout = TimeSpan.FromMinutes(1);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +65,7 @@ namespace TweetService.Api
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
-            context.Database.Migrate();
+            //context.Database.Migrate();
         }
     }
 }

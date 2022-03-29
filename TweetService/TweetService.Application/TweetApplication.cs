@@ -1,5 +1,6 @@
 ﻿
 
+using Mapster;
 using TweetService.Data;
 using TweetService.DomainModel;
 
@@ -13,13 +14,19 @@ namespace TweetService.Application
         {
             this.tweetRepository = tweetRepository;
         }
-        public Task AddTweet(Tweet tweet)
+        public async Task<Data.Models.Tweet> AddTweet(Tweet tweet)
         {
-            return this.tweetRepository.AddTweetAsync(new Data.Models.Tweet()
-            { 
+            _ = tweet.Body ?? throw new ArgumentNullException(nameof(tweet.Body));
+            _ = tweet.TweeterId ?? throw new ArgumentNullException(nameof(tweet.TweeterId));
+
+            var obj = new Data.Models.Tweet()
+            {
                 Body = tweet.Body,
                 TweeterId = tweet.TweeterId,
-            });
+            };
+            await this.tweetRepository.AddTweetAsync(obj);
+
+            return obj;
         }
 
         public Task DeleteTweet(Guid guid)
@@ -29,14 +36,18 @@ namespace TweetService.Application
 
         public List<Tweet> GetTweetByUser(string userId)
         {
-            return this.tweetRepository.GetTweetsByUser(userId)
-                .Select(x=> new Tweet(x.TweeterId, x.Body)).ToList();
+            return this.tweetRepository.GetTweetsByUser(userId).ProjectToType<Tweet>().ToList();
         }
 
         public List<Tweet> GetTweets()
         {
-            return this.tweetRepository.GetTweets()
-                .Select(x => new Tweet(x.TweeterId, x.Body)).ToList();
+            return this.tweetRepository.GetTweets().ProjectToType<Tweet>().ToList();
+        }
+
+        public Tweet GetTweetById(Guid tweetId)
+        {
+            var tweet = this.tweetRepository.GetTweets().Single(x=> x.Id == tweetId);
+            return tweet.Adapt<Tweet>();
         }
     }
 }
