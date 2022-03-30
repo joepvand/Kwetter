@@ -11,7 +11,42 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
-        docker build . --file ./TweetService/Dockerfile --tag ghcr.io/kwetter/tweetservice:latest
+        docker build . --file ./TweetService.Dockerfile --tag ghcr.io/kwetter/tweetservice:latest
         echo $CR_PAT | docker login ghcr.io -u joepvand -p ${{secrets.GITHUB_TOKEN}}
-        cd ./TweetService
         docker push ghcr.io/kwetter/tweetservice:latest
+  build_ProfileService:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        docker build . --file ./ProfileService.Dockerfile --tag ghcr.io/kwetter/profileservice:latest
+        echo $CR_PAT | docker login ghcr.io -u joepvand -p ${{secrets.GITHUB_TOKEN}}
+        docker push ghcr.io/kwetter/profileservice:latest
+  build_AuthService:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        docker build . --file ./AuthService.Dockerfile --tag ghcr.io/kwetter/authservice:latest
+        echo $CR_PAT | docker login ghcr.io -u joepvand -p ${{secrets.GITHUB_TOKEN}}
+        docker push ghcr.io/kwetter/authservice:latest
+  build_NotificationService:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        docker build . --file ./NotificationService.Dockerfile --tag ghcr.io/kwetter/notificationservice:latest
+        echo $CR_PAT | docker login ghcr.io -u joepvand -p ${{secrets.GITHUB_TOKEN}}
+        docker push ghcr.io/kwetter/notificationservice:latest
+  build_Gateway:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        docker build . --file ./Gateway.Dockerfile --tag ghcr.io/kwetter/gateway:latest
+        echo $CR_PAT | docker login ghcr.io -u joepvand -p ${{secrets.GITHUB_TOKEN}}
+        docker push ghcr.io/kwetter/gateway:latest
