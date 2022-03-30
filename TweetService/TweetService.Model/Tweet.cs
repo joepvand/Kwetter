@@ -11,19 +11,21 @@ namespace TweetService.DomainModel
         {
 
         }
-        public Tweet(string tweeterId, string body)
+        public Tweet(Guid tweeterId, string body)
         {
             this.Id = new Guid();
             TweeterId = tweeterId;
             Body = body;
+            this.TweetedAt = DateTime.Now;
 
             this.Validate<Tweet, TweetValidator>();
         }
         public Guid Id { get; private set; }
-        public string TweeterId { get; private set; }
+        public Guid TweeterId { get; private set; }
         public string Body { get; private set; }
+        public DateTime TweetedAt { get; private set; }
 
-        public void SetTweeter(string tweeterId)
+        public void SetTweeter(Guid tweeterId)
         {
             this.TweeterId = tweeterId;
         }

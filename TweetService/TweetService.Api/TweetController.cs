@@ -8,7 +8,7 @@ using TweetService.Application;
 namespace TweetService.Api
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/Tweet")]
     public class TweetController : ControllerBase
     {
         private readonly TweetApplication tweetApp;
@@ -16,6 +16,13 @@ namespace TweetService.Api
         public TweetController(TweetApplication tweetApp)
         {
             this.tweetApp = tweetApp;
+        }
+
+        [HttpGet("/Feed")]
+        public IActionResult GetFeed()
+        {
+            var result = this.tweetApp.GetFeedByUser(HttpContext.GetUserId());
+            return Ok(result);
         }
 
         [HttpGet]
@@ -29,23 +36,36 @@ namespace TweetService.Api
         public IActionResult GetById([FromRoute] string tweetId)
         {
             var result = this.tweetApp.GetTweetById(Guid.Parse(tweetId));
-            return Ok(result);
+
+            if (result.TweeterId == HttpContext.GetUserId()
+                || HttpContext.GetUserRole() == Role.Admin)
+            {
+                return Ok(result);
+            }
+
+            return Unauthorized();
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PostTweetRequest postRequest)
         {
-            var userid = HttpContext.GetUserId();
-            var domainModel = postRequest.AsDomainModel(HttpContext.GetUserId());
-            var result = await tweetApp.AddTweet(domainModel);
+            var result = await tweetApp.AddTweet(postRequest.AsDomainModel(HttpContext.GetUserId()));
             return CreatedAtRoute(nameof(GetById), new { tweetId = result.Id }, result);
         }
 
         [HttpDelete("/{tweetId}")]
-        public async Task<IActionResult> Delete([FromRoute]string tweetId)
+        public async Task<IActionResult> Delete([FromRoute] string tweetId)
         {
-            await tweetApp.DeleteTweet(Guid.Parse(tweetId));
-            return NoContent();
+            var result = this.tweetApp.GetTweetById(Guid.Parse(tweetId));
+
+            if (result.TweeterId == HttpContext.GetUserId()
+                || HttpContext.GetUserRole() == Role.Admin)
+            {
+                await tweetApp.DeleteTweet(Guid.Parse(tweetId));
+                return NoContent();
+            }
+
+            return Unauthorized();
         }
     }
 }

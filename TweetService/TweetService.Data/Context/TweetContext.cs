@@ -11,6 +11,7 @@ namespace TweetService.Data.Context
     public class TweetContext : DbContext
     {
         public DbSet<Tweet> Tweets { get; set; }
+        public DbSet<User> Users { get; set; }
         public TweetContext(DbContextOptions<TweetContext> options) : base(options)
         {
 

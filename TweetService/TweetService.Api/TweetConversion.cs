@@ -5,7 +5,7 @@ namespace TweetService.Api
 {
     public static class TweetConversion
     {
-        public static DomainModel.Tweet AsDomainModel(this PostTweetRequest req, string tweeterId)
+        public static DomainModel.Tweet AsDomainModel(this PostTweetRequest req, Guid tweeterId)
         {
             TypeAdapterConfig<PostTweetRequest, DomainModel.Tweet>
              .NewConfig()

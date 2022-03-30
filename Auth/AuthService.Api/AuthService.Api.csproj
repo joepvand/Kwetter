@@ -43,6 +43,7 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\..\MessagingModels\MessagingModels.csproj" />
 	  <ProjectReference Include="..\AuthService.Application\AuthService.Application.csproj" />
 	  <ProjectReference Include="..\AuthService.Data\AuthService.Data.csproj" />
 	</ItemGroup>

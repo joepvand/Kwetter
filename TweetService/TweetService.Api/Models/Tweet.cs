@@ -2,6 +2,9 @@
 {
     public class Tweet
     {
+        public string TweeterId { get; set; }
         public string Body { get; set; }
+        public DateTime TweetedAt { get; set; }
+
     }
 }

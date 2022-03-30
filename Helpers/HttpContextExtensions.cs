@@ -9,10 +9,20 @@ namespace Helpers
 {
     public static class HttpContextExtensions
     {
-        public static string GetUserId(this HttpContext context)
+        public static Guid GetUserId(this HttpContext context)
         {
             var id = context.Request.Headers["claims_userid"].ToString();
-            return id;
+            return Guid.Parse(id);
         }
+        public static Role GetUserRole(this HttpContext context)
+        {
+            return Enum.Parse<Role>(context.Request.Headers["claims_role"].ToString());
+        }
+    }
+
+    public enum Role
+    {
+        User,
+        Admin
     }
 }

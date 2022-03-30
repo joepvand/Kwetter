@@ -1,7 +1,7 @@
 ﻿{
   //Routing
   "Routes": [
-    
+
     //Tweet API with downroute
     {
       "DownstreamPathTemplate": "/Tweet/{everything}",
@@ -32,7 +32,8 @@
         "AllowedScopes": []
       },
       "AddHeadersToRequest": {
-        "claims_userid": "Claims[id] > value > |"
+        "claims_userid": "Claims[id] > value > |",
+        "claims_role": "Claims[role] > value > |"
       }
     }
   ],

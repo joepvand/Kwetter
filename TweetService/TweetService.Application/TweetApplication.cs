@@ -14,16 +14,24 @@ namespace TweetService.Application
         {
             this.tweetRepository = tweetRepository;
         }
+
+        public async Task<List<Tweet>> GetFeedByUser(Guid userId)
+        {
+            var tweets = tweetRepository.GetFeedByUser(userId).ProjectToType<Tweet>().ToList();
+            return tweets;
+        }
         public async Task<Data.Models.Tweet> AddTweet(Tweet tweet)
         {
             _ = tweet.Body ?? throw new ArgumentNullException(nameof(tweet.Body));
-            _ = tweet.TweeterId ?? throw new ArgumentNullException(nameof(tweet.TweeterId));
+            if (tweet.TweeterId == default)
+                throw new ArgumentNullException(nameof(tweet.TweeterId));
 
             var obj = new Data.Models.Tweet()
             {
                 Body = tweet.Body,
                 TweeterId = tweet.TweeterId,
             };
+
             await this.tweetRepository.AddTweetAsync(obj);
 
             return obj;
@@ -34,7 +42,7 @@ namespace TweetService.Application
             return this.tweetRepository.DeleteTweetAsync(guid);
         }
 
-        public List<Tweet> GetTweetByUser(string userId)
+        public List<Tweet> GetTweetByUser(Guid userId)
         {
             return this.tweetRepository.GetTweetsByUser(userId).ProjectToType<Tweet>().ToList();
         }
@@ -46,7 +54,7 @@ namespace TweetService.Application
 
         public Tweet GetTweetById(Guid tweetId)
         {
-            var tweet = this.tweetRepository.GetTweets().Single(x=> x.Id == tweetId);
+            var tweet = this.tweetRepository.GetTweets().Single(x => x.Id == tweetId);
             return tweet.Adapt<Tweet>();
         }
     }

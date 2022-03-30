@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using TweetService.Data.Context;
+using ProfileService.Data.Context;
 
 #nullable disable
 
-namespace TweetService.Data.Migrations
+namespace ProfileService.Data.Migrations
 {
-    [DbContext(typeof(TweetContext))]
-    partial class TweetContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ProfileContext))]
+    partial class ProfileContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -23,40 +23,31 @@ namespace TweetService.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("TweetService.Data.Models.Tweet", b =>
+            modelBuilder.Entity("ProfileService.Data.Models.Profile", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("OwnerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Body")
+                    b.Property<string>("Biography")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("TweetedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("TweeterId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tweets");
-                });
-
-            modelBuilder.Entity("TweetService.Data.Models.User", b =>
-                {
-                    b.Property<Guid>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<List<Guid>>("Following")
+                    b.Property<List<Guid>>("BlockedUsers")
                         .IsRequired()
                         .HasColumnType("uuid[]");
 
-                    b.HasKey("UserId");
+                    b.Property<List<Guid>>("FollowingUsers")
+                        .IsRequired()
+                        .HasColumnType("uuid[]");
 
-                    b.ToTable("Users");
+                    b.Property<string>("ProfilePictureBase64")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("OwnerId");
+
+                    b.ToTable("Profiles");
                 });
 #pragma warning restore 612, 618
         }

@@ -41,7 +41,7 @@ namespace TweetService.Data
 
         }
 
-        public IQueryable<Tweet> GetTweetsByUser(string userId)
+        public IQueryable<Tweet> GetTweetsByUser(Guid userId)
         {
             return _repo.Tweets.Where(tweet => tweet.TweeterId == userId);
         }
@@ -49,6 +49,17 @@ namespace TweetService.Data
         public IQueryable<Tweet> GetTweets()
         {
             return _repo.Tweets;
+        }
+
+        public IQueryable<Tweet> GetFeedByUser(Guid userId)
+        {
+            var user = _repo.Users.Find(userId);
+            if (user == null)
+            {
+                throw new Exception($"User with id '{userId}' not found!");
+            }
+            var tweets = _repo.Tweets.Where(tweet => user.Following.Contains(tweet.TweeterId) || tweet.TweeterId == userId);
+            return tweets.OrderByDescending(tweet => tweet.TweetedAt);
         }
     }
 }

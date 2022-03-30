@@ -20,11 +20,7 @@ namespace TweetService.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers(opt =>
-            {
-                opt.RespectBrowserAcceptHeader = true;
-            })
-                    .AddXmlSerializerFormatters();
+            services.AddControllers();
             ;
             services.AddDbContext<TweetContext>(options =>
             {
@@ -32,12 +28,12 @@ namespace TweetService.Api
                 options.UseNpgsql(connString);
             });
 
-            services.AddTransient<Data.ITweetRepository, TweetRepository>();
+            services.AddTransient<ITweetRepository, TweetRepository>();
 
             services.AddTransient<TweetApplication>();
 
             services.AddTransient<IEventSender, EventSender>();
-            
+
             services.AddMassTransit(x =>
             {
                 x.UsingRabbitMq((cfx, cnf) =>
@@ -65,7 +61,7 @@ namespace TweetService.Api
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
-            //context.Database.Migrate();
+            context.Database.Migrate();
         }
     }
 }

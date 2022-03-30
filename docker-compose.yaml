@@ -18,6 +18,9 @@ services:
       - "5672"
   authservice:
     hostname: authservice
+    depends_on:
+      - "auth_db"
+      - "rabbitmq"
     build:
       dockerfile: AuthService.Dockerfile
     ports:
@@ -33,6 +36,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DATABASE=kwetter.AuthService
     ports:
       - '5433:5432'
     expose:
@@ -40,6 +44,9 @@ services:
     volumes: 
       - auth_db:/var/lib/postgresql/data
   tweetservice:
+    depends_on:
+      - "tweet_db"
+      - "rabbitmq"
     hostname: tweetservice
     build:
       dockerfile: TweetService.Dockerfile
@@ -48,7 +55,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:4003
       - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
-      - ConnectionStrings:DefaultConnection=Server=tweet_db;Port=5432;Database=kwetter.TweetService;User Id=postgres;Password=postgres;
+      - ConnectionStrings:DefaultConnection=Server=tweet_db;Port=5434;Database=kwetter.TweetService;User Id=postgres;Password=postgres;
   tweet_db:
     hostname: tweet_db
     image: postgres:14.1-alpine
@@ -56,11 +63,39 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DATABASE=kwetter.TweetService
+    ports:
+      - '5434:5432'
+    volumes: 
+      - tweet_db:/var/lib/postgresql/data
+  profileservice:
+    depends_on:
+      - "profile_db"
+      - "rabbitmq"
+    hostname: profileservice
+    build:
+      dockerfile: ProfileService.Dockerfile
+    ports:
+      - "4005:4005"
+    environment:
+      - ASPNETCORE_URLS=http://+:4005
+      - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
+      - ConnectionStrings:DefaultConnection=Server=profile_db;Port=5432;Database=kwetter.ProfileService;User Id=postgres;Password=postgres;
+  profile_db:
+    hostname: profile_db
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DATABASE=kwetter.ProfileService
     ports:
       - '5432:5432'
     volumes: 
-      - tweet_db:/var/lib/postgresql/data
+      - profile_db:/var/lib/postgresql/data
   notificationservice:
+    depends_on:
+      - "rabbitmq"
     hostname: NotificationService
     build:
       dockerfile: NotificationService.Dockerfile
@@ -80,4 +115,6 @@ volumes:
   tweet_db:
     driver: local
   auth_db:
+    driver: local
+  profile_db:
     driver: local

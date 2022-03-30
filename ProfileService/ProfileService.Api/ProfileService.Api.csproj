@@ -4,12 +4,11 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<UserSecretsId>42f6c2e1-d5ae-40f7-84be-6bb1e66a7bcc</UserSecretsId>
-		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-		<DockerfileContext>..\..</DockerfileContext>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Mapster" Version="7.3.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 		<PackageReference Include="MassTransit.RabbitMQ" Version="8.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.3" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3">
@@ -28,9 +27,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\TweetService.Application\TweetService.Application.csproj" />
-		<ProjectReference Include="..\TweetService.Data\TweetService.Data.csproj" />
-		<ProjectReference Include="..\TweetService.Model\TweetService.DomainModel.csproj" />
+		<ProjectReference Include="..\..\Helpers\Helpers.csproj" />
+		<ProjectReference Include="..\ProfileService.Application\ProfileService.Application.csproj" />
 	</ItemGroup>
 
 </Project>
