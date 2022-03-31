@@ -13,7 +13,7 @@ using ProfileService.Data.Context;
 namespace ProfileService.Data.Migrations
 {
     [DbContext(typeof(ProfileContext))]
-    [Migration("20220330184501_first")]
+    [Migration("20220331170723_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,10 @@ namespace ProfileService.Data.Migrations
                         .HasColumnType("uuid[]");
 
                     b.Property<string>("ProfilePictureBase64")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("text");
 

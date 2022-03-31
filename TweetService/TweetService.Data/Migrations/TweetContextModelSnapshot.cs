@@ -36,8 +36,9 @@ namespace TweetService.Data.Migrations
                     b.Property<DateTime>("TweetedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("TweeterId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("TweeterId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

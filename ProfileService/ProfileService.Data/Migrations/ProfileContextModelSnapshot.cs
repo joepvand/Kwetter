@@ -45,6 +45,10 @@ namespace ProfileService.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("OwnerId");
 
                     b.ToTable("Profiles");

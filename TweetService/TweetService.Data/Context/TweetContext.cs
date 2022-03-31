@@ -19,6 +19,7 @@ namespace TweetService.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Tweet>().Property(x => x.TweeterId).HasConversion(v => v.ToString(), v => Guid.Parse(v));
             base.OnModelCreating(modelBuilder);
         }
     }

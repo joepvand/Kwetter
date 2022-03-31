@@ -24,9 +24,11 @@ namespace ProfileService.Data.Consumers
             await profileRepo.Profiles.AddAsync(new Models.Profile()
             {
                 Biography = "I am new to Kwetter!",
-                OwnerId = context.Message.Id,
+                OwnerId = Guid.Parse(context.Message.Id),
                 Username = context.Message.Username,
-                ProfilePictureBase64 = defaultProfilePic
+                ProfilePictureBase64 = defaultProfilePic,
+                FollowingUsers = new List<Guid>(),
+                BlockedUsers = new List<Guid>()
             });
 
             await profileRepo.SaveChangesAsync();

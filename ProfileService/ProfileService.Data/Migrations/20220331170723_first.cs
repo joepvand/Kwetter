@@ -15,6 +15,7 @@ namespace ProfileService.Data.Migrations
                 columns: table => new
                 {
                     OwnerId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Username = table.Column<string>(type: "text", nullable: false),
                     ProfilePictureBase64 = table.Column<string>(type: "text", nullable: false),
                     Biography = table.Column<string>(type: "text", nullable: false),
                     FollowingUsers = table.Column<List<Guid>>(type: "uuid[]", nullable: false),

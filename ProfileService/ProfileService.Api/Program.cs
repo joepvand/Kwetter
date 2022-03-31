@@ -2,6 +2,7 @@ using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using ProfileService.Application;
 using ProfileService.Data;
+using ProfileService.Data.Consumers;
 using ProfileService.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,10 +28,18 @@ builder.Services.AddTransient<IEventSender, EventSender>();
 
 builder.Services.AddMassTransit(x =>
 {
+
+    x.AddConsumer<UserRegisteredConsmer>();
+
     x.UsingRabbitMq((cfx, cnf) =>
     {
         cnf.Host(Environment.GetEnvironmentVariable("RabbitMQConnectionString"));
+
+        cnf.ConfigureEndpoints(cfx);
     });
+
+
+
 });
 builder.Services.Configure<MassTransitHostOptions>(options =>
 {
@@ -42,7 +51,7 @@ builder.Services.Configure<MassTransitHostOptions>(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline. 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -58,7 +67,7 @@ app.MapControllers();
 using (var Scope = app.Services.CreateScope())
 {
     var context = Scope.ServiceProvider.GetService<ProfileContext>();
-    context.Database.Migrate();
+    context?.Database.Migrate();
 }
 app.Run();
 

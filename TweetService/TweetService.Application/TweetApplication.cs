@@ -15,7 +15,7 @@ namespace TweetService.Application
             this.tweetRepository = tweetRepository;
         }
 
-        public async Task<List<Tweet>> GetFeedByUser(Guid userId)
+        public List<Tweet> GetFeedByUser(Guid userId)
         {
             var tweets = tweetRepository.GetFeedByUser(userId).ProjectToType<Tweet>().ToList();
             return tweets;

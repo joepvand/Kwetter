@@ -27,12 +27,18 @@ namespace NotificationService.Api
                         c.ConfigureConsumer<TweetTweetedConsumer>(ctx);
 
                     });
+
+                    cfg.ConfigureEndpoints(ctx);
+
                 });
             });
 
-            services.AddMassTransitHostedService();
-
-
+            services.Configure<MassTransitHostOptions>(options =>
+            {
+                options.WaitUntilStarted = true;
+                options.StartTimeout = TimeSpan.FromSeconds(30);
+                options.StopTimeout = TimeSpan.FromMinutes(1);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

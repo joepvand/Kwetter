@@ -39,6 +39,20 @@ namespace ProfileService.Data
             await publishEndpoint.SendUserUnfollowedEvent(userId, userToUnfollow);
         }
 
+        public async Task UnBlockUser(Guid userId, Guid userToUnblock)
+        {
+            var profile = _repo.Profiles.Single(x => x.OwnerId == userId);
+            profile.BlockedUsers.Remove(userToUnblock);
+            await _repo.SaveChangesAsync();
+        }
+
+        public async Task BlockUser(Guid userId, Guid userToBlock)
+        {
+            var profile = _repo.Profiles.Single(x => x.OwnerId == userId);
+            profile.BlockedUsers.Add(userToBlock);
+            await _repo.SaveChangesAsync();
+        }
+
         public async Task<Profile> UpdateProfile(Guid userId, Profile profileInfo)
         {
             profileInfo.OwnerId = userId;

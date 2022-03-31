@@ -21,15 +21,16 @@ namespace ProfileService.Api.Controllers
         {
             var profile = profileApp.GetProfile(HttpContext.GetUserId());
 
-            return profile.Adapt<Profile>();
+
+            return profile.AsDto(false);
         }
 
-        [HttpGet("{profileId")]
+        [HttpGet("{profileId}")]
         public Profile GetById(string profileId)
         {
             var profile = profileApp.GetProfile(Guid.Parse(profileId));
-
-            return profile.Adapt<Profile>();
+            var blocked = profileApp.GetProfile(HttpContext.GetUserId()).BlockedUsers.Any(x => x == Guid.Parse(profileId));
+            return profile.AsDto(blocked);
         }
     }
 }

@@ -6,6 +6,6 @@
         public string ProfilePictureBase64 { get; set; }
         public string Biography { get; set; }
         public List<Guid> FollowingUsers { get; set; }
-        public List<Guid> BlockedUsers { get; set; }
+        public bool Blocked { get; set; }
     }
 }

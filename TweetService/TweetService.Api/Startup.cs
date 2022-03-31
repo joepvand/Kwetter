@@ -4,6 +4,7 @@ using TweetService.Data;
 using TweetService.Data.Context;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using TweetService.Data.Consumers;
 
 namespace TweetService.Api
 {
@@ -36,10 +37,17 @@ namespace TweetService.Api
 
             services.AddMassTransit(x =>
             {
+                x.AddConsumer<UserFollowedConsumer>();
+                x.AddConsumer<UserUnfollowedConsumer>();
+
                 x.UsingRabbitMq((cfx, cnf) =>
                 {
                     cnf.Host(Environment.GetEnvironmentVariable("RabbitMQConnectionString"));
+
+                    cnf.ConfigureEndpoints(cfx);
+
                 });
+
             });
             services.Configure<MassTransitHostOptions>(options =>
             {

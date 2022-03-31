@@ -1,8 +1,10 @@
-﻿using AuthService.Application;
+﻿using AuthService.Api.Constants;
+using AuthService.Application;
 using AuthService.Data;
 using AuthService.Data.Context;
 using AuthService.Model;
 using IdentityServer4.Services;
+using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -33,6 +35,25 @@ namespace AuthService.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApp1", Version = "v1" });
             });
+
+            services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq((cfx, cnf) =>
+                {
+                    cnf.Host(Environment.GetEnvironmentVariable("RabbitMQConnectionString"));
+
+                    cnf.ConfigureEndpoints(cfx);
+
+                });
+
+            });
+            services.Configure<MassTransitHostOptions>(options =>
+            {
+                options.WaitUntilStarted = true;
+                options.StartTimeout = TimeSpan.FromSeconds(30);
+                options.StopTimeout = TimeSpan.FromMinutes(1);
+            });
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AuthContext>()
                 .AddDefaultTokenProviders();
@@ -41,11 +62,11 @@ namespace AuthService.Api
             services.AddIdentityServer()
                     .AddDeveloperSigningCredential()
                     .AddInMemoryApiResources(Config.Config.GetApiResources())
-          .AddInMemoryApiScopes(Config.Config.GetApiScopes())
+                     .AddInMemoryApiScopes(Config.Config.GetApiScopes())
 
-          .AddAspNetIdentity<ApplicationUser>()
-          .AddProfileService<ProfileService>()
-          .AddInMemoryClients(Config.Config.GetClients());
+                     .AddAspNetIdentity<ApplicationUser>()
+                     .AddProfileService<ProfileService>()
+                     .AddInMemoryClients(Config.Config.GetClients());
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -68,7 +89,7 @@ namespace AuthService.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AuthContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AuthContext context, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -81,14 +102,24 @@ namespace AuthService.Api
 
             app.UseIdentityServer();
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapDefaultControllerRoute();
             });
 
+            SetupDb(context, roleManager).Wait();
+        }
+
+        public async Task SetupDb(AuthContext context, RoleManager<IdentityRole> roleManager)
+        {
             context.Database.Migrate();
+
+            if (!await roleManager.RoleExistsAsync(Roles.Admin))
+                await roleManager.CreateAsync(new IdentityRole(Roles.Admin));
+            if (!await roleManager.RoleExistsAsync(Roles.User))
+                await roleManager.CreateAsync(new IdentityRole(Roles.User));
         }
     }
 }
