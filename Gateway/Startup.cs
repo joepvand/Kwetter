@@ -38,17 +38,9 @@ namespace FS_Gateway
                     o.TokenValidationParameters = new TokenValidationParameters()
                     {
                         ValidateAudience = false,
-                        ValidateIssuer = false,
-                        ValidateActor = false,
-                        ValidateIssuerSigningKey = false,
-                        ClockSkew = TimeSpan.MaxValue,
-                        RequireAudience = false,
-                        RequireExpirationTime = false,
-                        RequireSignedTokens = false
                     };
                 });
-            /*            services.AddCors();
-            */
+
             services.AddOcelot();
 
         }
@@ -56,11 +48,6 @@ namespace FS_Gateway
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            /*    app.UseCors(x => x
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .SetIsOriginAllowed(origin => true) // allow any origin
-                    .AllowCredentials());*/
             await app.UseOcelot();
         }
     }

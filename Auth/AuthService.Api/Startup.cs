@@ -69,12 +69,12 @@ namespace AuthService.Api
             services.AddScoped<IProfileRepository, ProfileRepository>();
             services.AddIdentityServer()
                     .AddDeveloperSigningCredential()
-                    .AddInMemoryApiResources(Config.Config.GetApiResources())
-                     .AddInMemoryApiScopes(Config.Config.GetApiScopes())
+            .AddInMemoryApiResources(Config.Config.GetApiResources())
+             .AddInMemoryApiScopes(Config.Config.GetApiScopes())
 
-                     .AddAspNetIdentity<ApplicationUser>()
-                     .AddProfileService<ProfileService>()
-                     .AddInMemoryClients(Config.Config.GetClients());
+             .AddAspNetIdentity<ApplicationUser>()
+             .AddProfileService<ProfileService>()
+             .AddInMemoryClients(Config.Config.GetClients());
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -93,7 +93,7 @@ namespace AuthService.Api
             services.AddAuthentication();
             services.AddAuthorization();
             services.AddControllers();
-            
+
 
         }
 
