@@ -20,6 +20,7 @@ namespace TweetService.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
 
             services.AddControllers();
             ;
@@ -34,7 +35,6 @@ namespace TweetService.Api
             services.AddTransient<TweetApplication>();
 
             services.AddTransient<IEventSender, EventSender>();
-
             services.AddMassTransit(x =>
             {
                 x.AddConsumer<UserFollowedConsumer>();
@@ -64,7 +64,10 @@ namespace TweetService.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(x => x.AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials()); // allow credentials
             app.UseRouting();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

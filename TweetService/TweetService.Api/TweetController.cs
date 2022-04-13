@@ -8,7 +8,7 @@ using TweetService.Application;
 namespace TweetService.Api
 {
     [ApiController]
-    [Route("[controller]/Tweet")]
+    [Route("[controller]")]
     public class TweetController : ControllerBase
     {
         private readonly TweetApplication tweetApp;

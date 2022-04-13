@@ -8,6 +8,7 @@ using ProfileService.Data.Context;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -25,7 +26,6 @@ builder.Services.AddTransient<IProfileRepository, ProfileRepository>();
 builder.Services.AddTransient<ProfileApp>();
 
 builder.Services.AddTransient<IEventSender, EventSender>();
-
 builder.Services.AddMassTransit(x =>
 {
 
@@ -51,16 +51,18 @@ builder.Services.Configure<MassTransitHostOptions>(options =>
 
 var app = builder.Build();
 
+app.UseCors(x => x.AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true) // allow any origin
+    .AllowCredentials()); // allow credentials
+
+
 // Configure the HTTP request pipeline. 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
 
 app.MapControllers();
 

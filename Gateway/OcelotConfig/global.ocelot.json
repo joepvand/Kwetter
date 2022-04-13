@@ -8,12 +8,21 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "host.docker.internal",
           "Port": "4003"
         }
       ],
       "UpstreamPathTemplate": "/api/Tweet/{everything}",
-      "Key": "TweetDownroute"
+      "Key": "TweetDownroute",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+
+      },
+      "AddHeadersToRequest": {
+        "claims_userid": "Claims[id] > value > |",
+        "claims_role": "Claims[role] > value > |"
+      }
     },
     //Tweet API
     {
@@ -21,7 +30,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "host.docker.internal",
           "Port": "4003"
         }
       ],
@@ -30,11 +39,79 @@
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TestKey",
         "AllowedScopes": []
+
       },
       "AddHeadersToRequest": {
         "claims_userid": "Claims[id] > value > |",
         "claims_role": "Claims[role] > value > |"
       }
+    },
+
+
+    // Profile api with downroute
+    {
+      "DownstreamPathTemplate": "/Profile/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "4005"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Profile/{everything}",
+      "Key": "ProfileDownroute",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+
+      },
+
+    },
+    //Profile API
+    {
+      "DownstreamPathTemplate": "/Profile",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "4005"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Profile",
+      "Key": "Profile",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+
+      },
+
+    },
+
+    // Auth api with downroute
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "4002"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Auth/{everything}",
+      "Key": "AuthDownroute"
+    },
+    //Auth API
+    {
+      "DownstreamPathTemplate": "/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "4002"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Auth",
+      "Key": "Auth"
     }
   ],
   //GLOBAL CONFIG

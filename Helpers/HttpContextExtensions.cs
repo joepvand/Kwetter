@@ -11,7 +11,22 @@ namespace Helpers
     {
         public static Guid GetUserId(this HttpContext context)
         {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Console.WriteLine("USER ID CLAIM!!!! :" + context.Request.Headers["claims_userid"].ToString() + "EBDDD!!!!!");
             var id = context.Request.Headers["claims_userid"].ToString();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
             return Guid.Parse(id);
         }
         public static Role GetUserRole(this HttpContext context)

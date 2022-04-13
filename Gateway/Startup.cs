@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
@@ -24,20 +25,30 @@ namespace FS_Gateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer("TestKey", o =>
-            {
-                o.Authority = "https://localhost:7011";
-                o.Audience = "myresourceapi";
-                o.RequireHttpsMetadata = false;
-                
-            });
-            services.AddControllers();
-            
+            services.AddAuthentication(c =>
+                {
+                    c.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    c.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer("TestKey", o =>
+                {
+                    o.RequireHttpsMetadata = false;
+                    o.Authority = Environment.GetEnvironmentVariable("");
 
+                    o.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateAudience = false,
+                        ValidateIssuer = false,
+                        ValidateActor = false,
+                        ValidateIssuerSigningKey = false,
+                        ClockSkew = TimeSpan.MaxValue,
+                        RequireAudience = false,
+                        RequireExpirationTime = false,
+                        RequireSignedTokens = false
+                    };
+                });
+            /*            services.AddCors();
+            */
             services.AddOcelot();
 
         }
@@ -45,13 +56,12 @@ namespace FS_Gateway
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseAuthorization();
-
-            app.UseAuthentication();
+            /*    app.UseCors(x => x
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed(origin => true) // allow any origin
+                    .AllowCredentials());*/
             await app.UseOcelot();
-
-
-
         }
     }
 }

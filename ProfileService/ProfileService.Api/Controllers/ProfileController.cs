@@ -25,9 +25,10 @@ namespace ProfileService.Api.Controllers
             return profile.AsDto(false);
         }
 
-        [HttpGet("{profileId}")]
+        [HttpGet("/{profileId}")]
         public Profile GetById(string profileId)
         {
+            Console.WriteLine("why is this triggered");
             var profile = profileApp.GetProfile(Guid.Parse(profileId));
             var blocked = profileApp.GetProfile(HttpContext.GetUserId()).BlockedUsers.Any(x => x == Guid.Parse(profileId));
             return profile.AsDto(blocked);

@@ -21,15 +21,11 @@ namespace AuthService.Data
             var user = await _userManager.GetUserAsync(context.Subject);
             var roles = await _userManager.GetRolesAsync(user);
             var claims = new List<Claim>
-        {
-            new Claim(JwtClaimTypes.Role, roles.Any() ? roles.First() : "Standard"),
-            new Claim(JwtClaimTypes.Id, user.Id),
-        };
+             {
+                 new Claim(JwtClaimTypes.Role, roles.Any() ? roles.First() : "Standard"),
+                 new Claim(JwtClaimTypes.Id, user.Id),
+             };
 
-            foreach (var yes in claims)
-            {
-                Console.WriteLine(yes.ToString());
-            }
             context.IssuedClaims.AddRange(claims);
         }
 
