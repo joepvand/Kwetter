@@ -33,12 +33,8 @@ namespace FS_Gateway
                 .AddJwtBearer("TestKey", o =>
                 {
                     o.RequireHttpsMetadata = false;
-                    o.Authority = Environment.GetEnvironmentVariable("");
-
-                    o.TokenValidationParameters = new TokenValidationParameters()
-                    {
-                        ValidateAudience = false,
-                    };
+                    o.Authority = Environment.GetEnvironmentVariable("AuthServer");
+                    o.Audience = "myresourceapi";
                 });
 
             services.AddOcelot();

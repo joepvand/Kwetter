@@ -19,7 +19,7 @@
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "AuthServer": "http://localhost:4002"
+        "AuthServer": "http://host.docker.internal:4002"
       },
       "applicationUrl": "http://localhost:4069",
       "dotnetRunMessages": "true"
