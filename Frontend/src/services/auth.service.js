@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = process.env.REACT_APP_API_URL+"/authenticate";
+const API_URL = process.env.REACT_APP_API_URL+"/Auth";
 const instance = axios.create({
     baseURL: API_URL,
     timeout: 5000,
@@ -7,13 +7,25 @@ const instance = axios.create({
 class AuthService {
 
   login(username, password) {
+    const params = new URLSearchParams()
+    params.append('grant_type', 'password')
+    params.append('client_id', 'secret_user_client_id')
+    params.append('client_secret', 'secret')
+    params.append('scope', 'apiscope')
+    params.append('username', username)
+    params.append('password', password)
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+
+    
     return instance
-      .post(API_URL, {
-        username,
-        password
-      })
+      .post("/connect/token", params, config)
       .then(response => {
-        if (response.data.accessToken) {
+        if (response.data.access_token) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
 
@@ -29,18 +41,18 @@ class AuthService {
   }
 
   register(username, email, password) {
-    return instance.post(API_URL + "/signup", {
-      username,
-      email,
-      password
+    return instance.post(API_URL + "/Auth", {
+      Username: username,
+      Email: email,
+      Password: password
     });    
   }
   async isLoggedin(){
     var token = JSON.parse(localStorage.getItem('user'))
     if (token) {
-      return fetch(API_URL + "/getuser", {
+      return fetch(process.env.REACT_APP_API_URL+"/Profile", {
         headers:{
-         'Authorization': 'Bearer ' + token.accessToken
+         'Authorization': 'Bearer ' + token.access_token
         }
       }).then(response => {
         
@@ -54,7 +66,7 @@ class AuthService {
   async getCurrentUser() {
     var token = JSON.parse(localStorage.getItem('user'))
     if (token) {
-      return fetch(API_URL + "/getuser", {
+      return fetch(process.env.REACT_APP_API_URL+"/Profile", {
         headers:{
          'Authorization': 'Bearer ' + token.accessToken
         }

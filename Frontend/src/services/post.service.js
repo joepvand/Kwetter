@@ -1,7 +1,7 @@
   import axios from "axios";
 
   const apiUrl = process.env.REACT_APP_API_URL;
-  const token = JSON.parse(localStorage.getItem('user'))?.accessToken;
+  const token = JSON.parse(localStorage.getItem('user'))?.access_token;
   const instance = axios.create({
     baseURL: apiUrl,
     timeout: 1000,
