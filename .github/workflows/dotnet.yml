@@ -1,4 +1,4 @@
-name: Build
+name: .NET Build and SonarScan
 on:
   push:
     branches:
@@ -43,5 +43,7 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"joepvand_Kwetter" /o:"joepvand" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          cd backend
           dotnet build --configuration Release
+          cd ..
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"

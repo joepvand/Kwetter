@@ -48,7 +48,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProfileService.Data", "Prof
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProfileService.Application", "ProfileService\ProfileService.Application\ProfileService.Application.csproj", "{FBE53A08-C5F2-4B8C-A1CA-1473AB4E3993}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfileService.DomainModel", "ProfileService\ProfileService.DomainModel\ProfileService.DomainModel.csproj", "{C5EF09CB-D72A-4695-B920-5B8E31CFDFE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProfileService.DomainModel", "ProfileService\ProfileService.DomainModel\ProfileService.DomainModel.csproj", "{C5EF09CB-D72A-4695-B920-5B8E31CFDFE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
