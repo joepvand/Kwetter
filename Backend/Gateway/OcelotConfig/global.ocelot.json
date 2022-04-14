@@ -21,7 +21,7 @@
       },
       "AddHeadersToRequest": {
         "claims_userid": "Claims[id] > value > |",
-        "claims_role": "Claims[role] > value > |"
+        "claims_role": "Claims[UserRole] > value > |"
       }
     },
     //Tweet API
@@ -43,7 +43,7 @@
       },
       "AddHeadersToRequest": {
         "claims_userid": "Claims[id] > value > |",
-        "claims_role": "Claims[role] > value > |"
+        "claims_role": "Claims[UserRole] > value > |"
       }
     },
 
@@ -65,7 +65,10 @@
         "AllowedScopes": []
 
       },
-
+      "AddHeadersToRequest": {
+        "claims_userid": "Claims[id] > value > |",
+        "claims_role": "Claims[UserRole] > value > |"
+      }
     },
     //Profile API
     {
@@ -84,7 +87,10 @@
         "AllowedScopes": []
 
       },
-
+      "AddHeadersToRequest": {
+        "claims_userid": "Claims[id] > value > |",
+        "claims_role": "Claims[UserRole] > value > |"
+      }
     },
 
     // Auth api with downroute

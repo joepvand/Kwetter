@@ -87,7 +87,6 @@ services:
       - "4005:4005"
     environment:
       - ASPNETCORE_URLS=http://+:4005
-      - AuthServer=http://host.docker.internal:4002
       - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
       - ConnectionStrings:DefaultConnection=Server=host.docker.internal;Port=5432;Database=kwetter.ProfileService;User Id=postgres;Password=postgres;
   profile_db:
@@ -125,6 +124,7 @@ services:
         - "4000:4000"
       environment:
         - ASPNETCORE_URLS=http://+:4000
+        - AuthServer=http://host.docker.internal:4002
   # VOLUMES
 volumes:
   tweet_db:

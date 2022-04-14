@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL+"/tickets"
 
-const token = JSON.parse(localStorage.getItem('user'))?.accessToken;
+const token = JSON.parse(localStorage.getItem('user'))?.access_token;
 const instance = axios.create({
     baseURL: API_URL,
     timeout: 1000,

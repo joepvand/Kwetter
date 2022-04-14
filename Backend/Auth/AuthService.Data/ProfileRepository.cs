@@ -20,9 +20,13 @@ namespace AuthService.Data
         {
             var user = await _userManager.GetUserAsync(context.Subject);
             var roles = await _userManager.GetRolesAsync(user);
+            var topRole = "";
+            if (roles.Any(x => x == "Admin")) topRole = "Admin";
+            else if (roles.Any(x => x == "User")) topRole = "User";
+
             var claims = new List<Claim>
              {
-                 new Claim(JwtClaimTypes.Role, roles.Any() ? roles.First() : "Standard"),
+                 new Claim("UserRole", topRole),
                  new Claim(JwtClaimTypes.Id, user.Id),
              };
 

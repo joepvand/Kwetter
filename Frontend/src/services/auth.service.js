@@ -14,16 +14,9 @@ class AuthService {
     params.append('scope', 'apiscope')
     params.append('username', username)
     params.append('password', password)
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }
-
     
     return instance
-      .post("/connect/token", params, config)
+      .post("/connect/token", params)
       .then(response => {
         if (response.data.access_token) {
           localStorage.setItem("user", JSON.stringify(response.data));

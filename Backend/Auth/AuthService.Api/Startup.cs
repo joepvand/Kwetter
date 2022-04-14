@@ -23,14 +23,16 @@ namespace AuthService.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            /*services.AddSingleton<ICorsPolicyService>((container) =>
+            services.AddSingleton<ICorsPolicyService>((container) =>
             {
                 var logger = container.GetRequiredService<ILogger<DefaultCorsPolicyService>>();
                 return new DefaultCorsPolicyService(logger)
                 {
                     AllowAll = true
                 };
-            });*/
+            });
+
+            services.AddCors();
             services.AddTransient<IProfileService, ProfileService>();
 
             services.AddDbContext<AuthContext>(options =>
@@ -108,10 +110,10 @@ namespace AuthService.Api
                     "WebApp1 v1"));
             }
             app.UseRouting();
-            /*app.UseCors(x => x.AllowAnyMethod()
+            app.UseCors(x => x.AllowAnyMethod()
                 .AllowAnyHeader()
                 .SetIsOriginAllowed(origin => true) // allow any origin
-                .AllowCredentials()); // allow credentials*/
+                .AllowCredentials()); // allow credentials
 
             app.UseIdentityServer();
             app.UseAuthorization();
