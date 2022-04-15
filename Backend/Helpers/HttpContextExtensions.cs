@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,27 +12,17 @@ namespace Helpers
     {
         public static Guid GetUserId(this HttpContext context)
         {
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-
-            Console.WriteLine("USER ID CLAIM!!!! :" + context.Request.Headers["claims_userid"].ToString() + "EBDDD!!!!!");
-            var id = context.Request.Headers["claims_userid"].ToString();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-
-            return Guid.Parse(id);
+            var handler = new JwtSecurityTokenHandler();
+            var jwtSecurityToken = handler.ReadJwtToken(context.Request.Headers["Authorization"].ToString().Replace("Bearer ", String.Empty));
+            var claims = jwtSecurityToken.Claims.ToList();
+            return Guid.Parse(claims.Single(x => x.Type == "id").Value);
         }
         public static Role GetUserRole(this HttpContext context)
         {
-            return Enum.Parse<Role>(context.Request.Headers["claims_role"].ToString());
+            var handler = new JwtSecurityTokenHandler();
+            var jwtSecurityToken = handler.ReadJwtToken(context.Request.Headers["Authorization"].ToString().Replace("Bearer ", String.Empty));
+            var claims = jwtSecurityToken.Claims.ToList();
+            return Enum.Parse<Role>(claims.Single(x => x.Type == "UserRole").Value);
         }
     }
 

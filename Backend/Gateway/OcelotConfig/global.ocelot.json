@@ -17,11 +17,6 @@
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TestKey",
         "AllowedScopes": []
-
-      },
-      "AddHeadersToRequest": {
-        "claims_userid": "Claims[id] > value > |",
-        "claims_role": "Claims[UserRole] > value > |"
       }
     },
     //Tweet API
@@ -39,11 +34,24 @@
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TestKey",
         "AllowedScopes": []
+      }
+    },
 
-      },
-      "AddHeadersToRequest": {
-        "claims_userid": "Claims[id] > value > |",
-        "claims_role": "Claims[UserRole] > value > |"
+    //Tweet feed API
+    {
+      "DownstreamPathTemplate": "/Feed",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "4003"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Feed",
+      "Key": "Feed",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
       }
     },
 
@@ -63,12 +71,8 @@
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TestKey",
         "AllowedScopes": []
-
-      },
-      "AddHeadersToRequest": {
-        "claims_userid": "Claims[id] > value > |",
-        "claims_role": "Claims[UserRole] > value > |"
       }
+
     },
     //Profile API
     {
@@ -86,11 +90,8 @@
         "AuthenticationProviderKey": "TestKey",
         "AllowedScopes": []
 
-      },
-      "AddHeadersToRequest": {
-        "claims_userid": "Claims[id] > value > |",
-        "claims_role": "Claims[UserRole] > value > |"
       }
+
     },
 
     // Auth api with downroute

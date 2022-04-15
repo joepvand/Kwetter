@@ -20,8 +20,14 @@ namespace TweetService.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    policy =>
+                    {
+                        policy.AllowAnyHeader().AllowAnyOrigin();
+                    });
+            });
             services.AddControllers();
             ;
             services.AddDbContext<TweetContext>(options =>
@@ -39,6 +45,7 @@ namespace TweetService.Api
             {
                 x.AddConsumer<UserFollowedConsumer>();
                 x.AddConsumer<UserUnfollowedConsumer>();
+                x.AddConsumer<ProfileCreatedConsumer>();
 
                 x.UsingRabbitMq((cfx, cnf) =>
                 {
@@ -64,10 +71,8 @@ namespace TweetService.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(x => x.AllowAnyMethod()
-                .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true) // allow any origin
-                .AllowCredentials()); // allow credentials
+            app.UseCors("CorsPolicy");
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

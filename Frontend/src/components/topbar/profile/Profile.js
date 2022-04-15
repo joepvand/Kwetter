@@ -19,11 +19,11 @@ const Profile = ({ user }) => {
       <div className="profile">
         <div onClick={(e) => {handleClick(e)}}>
           <img
-            src={user?.profilePicture}
+            src={'data:image/png;base64,'+user?.profilePictureBase64}
             className="profilePicture"
             alt="avatar"
           />
-          <Typography data-testid="profileName"className="item">{user?.displayName}</Typography>
+          <Typography data-testid="profileName" className="item">{user?.displayName}</Typography>
         </div>
       
       <Menu
@@ -33,7 +33,7 @@ const Profile = ({ user }) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => history.push("/user/"+user.username)}>Profile</MenuItem>
+        <MenuItem onClick={() => history.push("/user/"+user.OwnerId)}>Profile</MenuItem>
         <MenuItem onClick={() => history.push("/account")}>My account</MenuItem>
         <MenuItem onClick={() => authService.logout() }>Logout</MenuItem>
       </Menu>

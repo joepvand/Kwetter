@@ -11,4 +11,9 @@ namespace MessagingModels
         public string Id { get; set; }
         public string Username { get; set; }
     }
+
+    public interface IProfileCreatedEvent
+    {
+        public string Id { get; set; }
+    }
 }

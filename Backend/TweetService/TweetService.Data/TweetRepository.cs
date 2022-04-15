@@ -58,6 +58,7 @@ namespace TweetService.Data
             {
                 throw new Exception($"User with id '{userId}' not found!");
             }
+
             var tweets = _repo.Tweets.Where(tweet => user.Following.Contains(tweet.TweeterId) || tweet.TweeterId == userId);
             return tweets.OrderByDescending(tweet => tweet.TweetedAt);
         }

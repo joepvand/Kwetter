@@ -28,12 +28,12 @@ export default function Postlist({username}) {
         
         <Post
           key={idx}
-          postId={post.idString}
+          postId={post.id}
           imgData={post.imgData}
           subtitle={post.body}
-          postedBy={post.postedBy}
-          datePosted={post.prettyDatePosted}
-          commentsList={post.comments}
+          postedBy={post.tweeterId}
+          datePosted={post.tweeterId}
+          commentsList={null}
         ></Post>
       ))}
       

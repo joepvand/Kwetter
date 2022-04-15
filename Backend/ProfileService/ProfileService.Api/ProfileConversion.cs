@@ -9,7 +9,9 @@ namespace ProfileService.Api
             TypeAdapterConfig<Data.Models.Profile, Profile>
              .NewConfig()
              .Map(dest => dest.Blocked,
-                 src => isBlocked);
+                 src => isBlocked)
+             .Map(dest => dest.DisplayName,
+                 src => src.Username);
 
             return input.Adapt<Profile>();
         }

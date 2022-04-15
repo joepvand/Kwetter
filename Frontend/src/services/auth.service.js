@@ -61,7 +61,7 @@ class AuthService {
     if (token) {
       return fetch(process.env.REACT_APP_API_URL+"/Profile", {
         headers:{
-         'Authorization': 'Bearer ' + token.accessToken
+         'Authorization': 'Bearer ' + token.access_token
         }
       }).then(response => {
         if (response) {

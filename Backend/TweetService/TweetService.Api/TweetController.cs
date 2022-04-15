@@ -21,18 +21,24 @@ namespace TweetService.Api
         [HttpGet("/Feed")]
         public IActionResult GetFeed()
         {
-            var result = this.tweetApp.GetFeedByUser(HttpContext.GetUserId());
+            var guid = this.HttpContext.GetUserId();
+            Console.WriteLine($"GOT GUID: {guid} // // /END GUID!!");
+            var result = this.tweetApp.GetFeedByUser(guid);
             return Ok(result);
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string userId)
         {
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                return Ok(this.tweetApp.GetTweetByUser(Guid.Parse(userId)));
+            }
             var result = this.tweetApp.GetTweetByUser(HttpContext.GetUserId());
             return Ok(result);
         }
 
-        [HttpGet("{tweetId}", Name = nameof(GetById))]
+        [HttpGet("/{tweetId}", Name = nameof(GetById))]
         public IActionResult GetById([FromRoute] string tweetId)
         {
             var result = this.tweetApp.GetTweetById(Guid.Parse(tweetId));

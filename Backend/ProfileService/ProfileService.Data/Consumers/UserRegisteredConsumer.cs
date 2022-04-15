@@ -32,6 +32,11 @@ namespace ProfileService.Data.Consumers
             });
 
             await profileRepo.SaveChangesAsync();
+
+            await context.Publish<IProfileCreatedEvent>(new
+            {
+                Id = Guid.Parse(context.Message.Id),
+            });
         }
     }
 }

@@ -11,10 +11,8 @@
 class PostService {
   addPost(post) {
     return instance
-      .post("posts", {
+      .post('/Tweet',{
         body: post.body,
-        imgData: post.imgData,
-        postedBy: post.postedBy,
       })
       .then((response) => {
         return response.data;
@@ -22,29 +20,20 @@ class PostService {
   }
   getPostById(id) {
     return instance
-      .get("posts/"+id)
+      .get("/Tweet/"+id)
       .then((response) => {
         return response.data;
       });
   }
-  getPostByUserId(id) {
-    return instance
-      .get("posts", {
-        userid: id,
-      })
-      .then((response) => {
-        return response.data;
-      });
-  }
-  getPostByUsername(name) {
-    return instance.get("posts?username=" + name).then((response) => {
+  getPostByUserId(name) {
+    return instance.get("/Tweet?userId=" + name).then((response) => {
       return response.data;
     });
   }
 
   getPostsFromFollowing() {
     return instance
-      .get("posts/following")
+      .get("/Feed")
       .then((response) => {
         return response.data;
       });
@@ -52,7 +41,7 @@ class PostService {
 
   reportPost(postid) {
     return instance
-      .post("report", {
+      .post("/Tweet/report", {
         postId: postid,
       })
       .then((response) => {
@@ -61,7 +50,7 @@ class PostService {
   }
 
   commentOnPost({postid, body}){
-    return instance.post("comment",
+    return instance.post("/Tweet/comment",
     {
       postId: postid,
       body: body
