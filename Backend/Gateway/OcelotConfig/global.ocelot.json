@@ -131,7 +131,42 @@
       }
 
     },
+    // Report api with downroute
+    {
+      "DownstreamPathTemplate": "/Report/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "4007"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Report/{everything}",
+      "Key": "ReportDownroute",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
 
+    },
+    //Report API
+    {
+      "DownstreamPathTemplate": "/Report",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "4007"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Report",
+      "Key": "Report",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+
+      }
+    },
     // Auth api with downroute
     {
       "DownstreamPathTemplate": "/{everything}",
@@ -145,6 +180,7 @@
       "UpstreamPathTemplate": "/api/Auth/{everything}",
       "Key": "AuthDownroute"
     },
+
     //Auth API
     {
       "DownstreamPathTemplate": "/",
