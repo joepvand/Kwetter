@@ -94,6 +94,44 @@
 
     },
 
+    // Comment api with downroute
+    {
+      "DownstreamPathTemplate": "/Comment/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "4006"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Comment/{everything}",
+      "Key": "CommentDownroute",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
+
+    },
+    //Comment API
+    {
+      "DownstreamPathTemplate": "/Comment",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "4006"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Comment",
+      "Key": "Comment",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+
+      }
+
+    },
+
     // Auth api with downroute
     {
       "DownstreamPathTemplate": "/{everything}",

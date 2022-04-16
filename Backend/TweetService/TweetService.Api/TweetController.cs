@@ -22,7 +22,6 @@ namespace TweetService.Api
         public IActionResult GetFeed()
         {
             var guid = this.HttpContext.GetUserId();
-            Console.WriteLine($"GOT GUID: {guid} // // /END GUID!!");
             var result = this.tweetApp.GetFeedByUser(guid);
             return Ok(result);
         }

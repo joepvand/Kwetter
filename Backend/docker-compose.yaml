@@ -125,6 +125,35 @@ services:
       environment:
         - ASPNETCORE_URLS=http://+:4000
         - AuthServer=http://host.docker.internal:4002
+  # COMMENT SERVICE
+  commentservice:
+    depends_on:
+      - "comment_db"
+      - "rabbitmq"
+    hostname: commentservice
+    build:
+      dockerfile: CommentService.Dockerfile
+    ports:
+      - "4006:4006"
+    environment:
+      - ASPNETCORE_URLS=http://+:4006
+      - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
+      - ConnectionStrings:DefaultConnection=Server=host.docker.internal;Port=5435;Database=kwetter.CommentService;User Id=postgres;Password=postgres;
+  comment_db:
+    hostname: comment_db
+    image: postgres:14.1-alpine
+    restart: always
+    container_name: comment_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=kwetter.CommentService
+    ports:
+      - "5435:5432"
+    expose:
+      - "5435"
+    volumes: 
+      - profile_db:/var/lib/postgresql/data
   # VOLUMES
 volumes:
   tweet_db:
@@ -132,4 +161,6 @@ volumes:
   auth_db:
     driver: local
   profile_db:
+    driver: local
+  comment_db:
     driver: local
