@@ -3,6 +3,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ main ]
+    paths:
+      - Backend/**
     
 jobs:
   build_TweetService:
@@ -12,10 +14,10 @@ jobs:
     - name: Build the Docker image
       run: |
         cd Backend
-        docker build . --file ./TweetService.Dockerfile --tag ghcr.io/kwetter/tweetservice:latest
-        echo $CR_PAT | docker login ghcr.io -u joepvand -p ${{secrets.GITHUB_TOKEN}}
+        docker build . --file ./TweetService.Dockerfile --tag ghcr.io/joepvand/kwetter/tweetservice:latest
+        echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} -p ${{secrets.GITHUB_TOKEN}}
         cd TweetService/TweetService.Api
-        docker push ghcr.io/kwetter/tweetservice:latest
+        docker push ghcr.io/joepvand/kwetter/tweetservice:latest
   build_ProfileService:
     runs-on: ubuntu-latest
     steps:
@@ -23,10 +25,10 @@ jobs:
     - name: Build the Docker image
       run: |
         cd Backend
-        docker build . --file ./ProfileService.Dockerfile --tag ghcr.io/kwetter/profileservice:latest
-        echo $CR_PAT | docker login ghcr.io -u joepvand -p ${{secrets.GITHUB_TOKEN}}
+        docker build . --file ./ProfileService.Dockerfile --tag ghcr.io/joepvand/kwetter/profileservice:latest
+        echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} -p ${{secrets.GITHUB_TOKEN}}
         cd ProfileService
-        docker push ghcr.io/kwetter/profileservice:latest
+        docker push ghcr.io/joepvand/kwetter/profileservice:latest
   build_AuthService:
     runs-on: ubuntu-latest
     steps:
@@ -34,9 +36,9 @@ jobs:
     - name: Build the Docker image
       run: |
         cd Backend
-        docker build . --file ./AuthService.Dockerfile --tag ghcr.io/kwetter/authservice:latest
-        echo $CR_PAT | docker login ghcr.io -u joepvand -p ${{secrets.GITHUB_TOKEN}}
-        docker push ghcr.io/kwetter/authservice:latest
+        docker build . --file ./AuthService.Dockerfile --tag ghcr.io/joepvand/kwetter/authservice:latest
+        echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} -p ${{secrets.GITHUB_TOKEN}}
+        docker push ghcr.io/joepvand/kwetter/authservice:latest
   build_NotificationService:
     runs-on: ubuntu-latest
     steps:
@@ -44,9 +46,9 @@ jobs:
     - name: Build the Docker image
       run: |
         cd Backend
-        docker build . --file ./NotificationService.Dockerfile --tag ghcr.io/kwetter/notificationservice:latest
-        echo $CR_PAT | docker login ghcr.io -u joepvand -p ${{secrets.GITHUB_TOKEN}}
-        docker push ghcr.io/kwetter/notificationservice:latest
+        docker build . --file ./NotificationService.Dockerfile --tag ghcr.io/joepvand/kwetter/notificationservice:latest
+        echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} -p ${{secrets.GITHUB_TOKEN}}
+        docker push ghcr.io/joepvand/kwetter/notificationservice:latest
   build_Gateway:
     runs-on: ubuntu-latest
     steps:
@@ -54,6 +56,26 @@ jobs:
     - name: Build the Docker image
       run: |
         cd Backend
-        docker build . --file ./Gateway.Dockerfile --tag ghcr.io/kwetter/gateway:latest
-        echo $CR_PAT | docker login ghcr.io -u joepvand -p ${{secrets.GITHUB_TOKEN}}
-        docker push ghcr.io/kwetter/gateway:latest
+        docker build . --file ./Gateway.Dockerfile --tag ghcr.io/joepvand/kwetter/gateway:latest
+        echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} -p ${{secrets.GITHUB_TOKEN}}
+        docker push ghcr.io/joepvand/kwetter/gateway:latest
+  build_ReportService:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        cd Backend
+        docker build . --file ./ReportService.Dockerfile --tag ghcr.io/joepvand/kwetter/reportservice:latest
+        echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} -p ${{secrets.GITHUB_TOKEN}}
+        docker push ghcr.io/joepvand/kwetter/reportservice:latest
+  build_CommentService:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        cd Backend
+        docker build . --file ./CommentService.Dockerfile --tag ghcr.io/joepvand/kwetter/commentservice:latest
+        echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} -p ${{secrets.GITHUB_TOKEN}}
+        docker push ghcr.io/joepvand/kwetter/commentservice:latest

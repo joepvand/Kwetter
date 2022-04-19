@@ -21,7 +21,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\Helpers\Helpers.csproj" />
 		<ProjectReference Include="..\..\Helpers\Helpers.csproj" />
 		<ProjectReference Include="..\ReportService.Application\ReportService.Application.csproj" />
 		<ProjectReference Include="..\ReportService.Data\ReportService.Data.csproj" />

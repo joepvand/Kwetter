@@ -28,7 +28,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\ReportService\ReportService\ReportService.Api\ReportService.Api.csproj" />
 		<ProjectReference Include="..\TweetService.Application\TweetService.Application.csproj" />
 		<ProjectReference Include="..\TweetService.Data\TweetService.Data.csproj" />
 		<ProjectReference Include="..\TweetService.Model\TweetService.DomainModel.csproj" />
