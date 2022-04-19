@@ -38,25 +38,6 @@ class PostService {
         return response.data;
       });
   }
-
-  reportPost(postid) {
-    return instance
-      .post("/Tweet/report", {
-        postId: postid,
-      })
-      .then((response) => {
-        return response.data;
-      });
-  }
-
-  commentOnPost({postid, body}){
-    return instance.post("/Tweet/comment",
-    {
-      postId: postid,
-      body: body
-    })
-    .then((response) => {return response.data})
-  }
 }
 
 export default new PostService();

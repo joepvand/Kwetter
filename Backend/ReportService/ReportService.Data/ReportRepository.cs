@@ -11,7 +11,7 @@ using Report = ReportService.Data.Models.Report;
 
 namespace ReportService.Data
 {
-    internal class ReportRepository : IReportRepository
+    public class ReportRepository : IReportRepository
     {
         private readonly ReportContext _context;
 

@@ -27,7 +27,7 @@ namespace TweetService.Api
         }
 
         [HttpGet]
-        public IActionResult Get(string userId)
+        public IActionResult Get(string userId = "")
         {
             if (string.IsNullOrWhiteSpace(userId))
             {

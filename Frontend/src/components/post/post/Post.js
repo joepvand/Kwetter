@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -16,6 +16,7 @@ import Commentlist from "../commentlist/Commentlist";
 import './Post.css'
 import ReportDialog from "../reportDialog/ReportDialog";
 import {useHistory} from 'react-router-dom';
+import userService from "../../../services/user.service";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,6 +55,8 @@ export default function Post({
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [poster, setPoster] = React.useState({});
+
   const [showReportDialog, setShowReportDialog] = useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -65,16 +68,23 @@ export default function Post({
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+
+        userService.getById(postedBy).then(user => setPoster(user));
+      
+  }, [postedBy])
+
   return (
-    <div>
+    <>
     <Card className={classes.root}>
       <div className="postHeader">
       <CardHeader
-      onClick={() => history.push("/user/"+postedBy.username)}
+      onClick={() => history.push("/user/"+poster.ownerId)}
         avatar={
-          <img src={postedBy.profilePicture} className="profilePicture" alt="Profile"/>
+          <img src={'data:image/png;base64,'+poster.profilePictureBase64} className="profilePicture" alt="Profile"/>
         }
-        title={"Posted by " + postedBy.displayName +" on "+ datePosted}
+        title={"Posted by " + poster.displayName +" on "+ datePosted}
         
       />
        <Button className="optionsButton" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
@@ -85,7 +95,7 @@ export default function Post({
 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          <b>{postedBy.displayName}:</b> {subtitle}
+          <b>{poster.displayName}:</b> {subtitle}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -118,6 +128,6 @@ export default function Post({
 </Menu>
 
 <ReportDialog open={showReportDialog} postId={postId}/>
-    </div>
+    </>
   );
 }

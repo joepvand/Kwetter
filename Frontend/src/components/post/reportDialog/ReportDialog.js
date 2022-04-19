@@ -5,7 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import postService from '../../../services/post.service';
+import ReportService from '../../../services/report.service';
 import { useAlert } from 'react-alert'
 
 import './ReportDialog.css'
@@ -14,11 +14,11 @@ export default function ReportDialog({open, postId}) {
     useEffect(() => {
         setShouldOpen(open)
     }, [open])
-    const [shouldOpen, setShouldOpen] = useState(null);
+    const [shouldOpen, setShouldOpen] = useState(false);
     const alert = useAlert();
 
     const reportPost =() => {
-      postService.reportPost(postId).then(result => {
+      ReportService.Add(postId, "").then(result => {
         alert.info(result);
         })
       .catch(error => {

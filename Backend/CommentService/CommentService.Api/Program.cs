@@ -1,3 +1,5 @@
+using CommentService.Application;
+using CommentService.Data;
 using CommentService.Data.Context;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +19,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<ICommentRepository, CommentRepository>();
+builder.Services.AddTransient<CommentApp>();
 builder.Services.AddDbContext<CommentContext>(options =>
 {
     var connString = builder.Configuration.GetConnectionString("DefaultConnection");

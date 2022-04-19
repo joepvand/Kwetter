@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = process.env.REACT_APP_API_URL+'/Profile';
 const token = JSON.parse(localStorage.getItem('user'))?.access_token;
 const instance = axios.create({
     baseURL: apiUrl,
@@ -9,6 +9,15 @@ const instance = axios.create({
   });
 
 class UserService {
+
+    getById(id){
+        return instance
+            .get(id)
+            .then(response => {  
+              return response.data;
+            })
+        
+    }
     getUserByName(username) {
         if (username){
             return instance

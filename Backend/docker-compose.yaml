@@ -153,7 +153,7 @@ services:
     expose:
       - "5435"
     volumes: 
-      - report_db:/var/lib/postgresql/data
+      - comment_db:/var/lib/postgresql/data
   # report SERVICE
   reportservice:
     depends_on:
@@ -163,9 +163,9 @@ services:
     build:
       dockerfile: ReportService.Dockerfile
     ports:
-      - "4006:4006"
+      - "4007:4007"
     environment:
-      - ASPNETCORE_URLS=http://+:4006
+      - ASPNETCORE_URLS=http://+:4007
       - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
       - ConnectionStrings:DefaultConnection=Server=host.docker.internal;Port=5435;Database=kwetter.ReportService;User Id=postgres;Password=postgres;
   report_db:

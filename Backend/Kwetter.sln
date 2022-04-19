@@ -62,13 +62,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentService.Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReportService", "ReportService", "{79F21DE0-BA00-460A-962A-91C6141DA0B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService.Data", "ReportService\ReportService\ReportService.Data\ReportService.Data.csproj", "{0B9F9C96-758C-46B4-8008-A6C724BA7098}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService.Data", "ReportService\ReportService.Data\ReportService.Data.csproj", "{0B9F9C96-758C-46B4-8008-A6C724BA7098}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService.DomainModels", "ReportService\ReportService\ReportService.DomainModels\ReportService.DomainModels.csproj", "{FF980360-C654-4335-920D-BE3965C266B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService.DomainModels", "ReportService\ReportService.DomainModels\ReportService.DomainModels.csproj", "{FF980360-C654-4335-920D-BE3965C266B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService.Application", "ReportService\ReportService\ReportService.Application\ReportService.Application.csproj", "{71B756B3-5F17-48AC-996B-9564663480C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService.Application", "ReportService\ReportService.Application\ReportService.Application.csproj", "{71B756B3-5F17-48AC-996B-9564663480C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService.Api", "ReportService\ReportService\ReportService.Api\ReportService.Api.csproj", "{98C14C6C-1C71-4DA9-8683-E3DFE30161A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService.Api", "ReportService\ReportService.Api\ReportService.Api.csproj", "{98C14C6C-1C71-4DA9-8683-E3DFE30161A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

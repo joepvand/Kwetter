@@ -7,14 +7,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["ReportService/ReportService/ReportService.Api/ReportService.Api.csproj", "ReportService/ReportService/ReportService.Api/"]
-COPY ["ReportService/ReportService/ReportService.Data/ReportService.Data.csproj", "ReportService/ReportService/ReportService.Data/"]
-COPY ["ReportService/ReportService/ReportService.DomainModels/ReportService.DomainModels.csproj", "ReportService/ReportService/ReportService.DomainModels/"]
-COPY ["ReportService/ReportService/ReportService.Application/ReportService.Application.csproj", "ReportService/ReportService/ReportService.Application/"]
+COPY ["ReportService/ReportService.Api/ReportService.Api.csproj", "ReportService/ReportService.Api/"]
+COPY ["ReportService/ReportService.Data/ReportService.Data.csproj", "ReportService/ReportService.Data/"]
+COPY ["ReportService/ReportService.DomainModels/ReportService.DomainModels.csproj", "ReportService/ReportService.DomainModels/"]
+COPY ["ReportService/ReportService.Application/ReportService.Application.csproj", "ReportService/ReportService.Application/"]
 COPY ["Helpers/Helpers.csproj", "Helpers/"]
-RUN dotnet restore "ReportService/ReportService/ReportService.Api/ReportService.Api.csproj"
+RUN dotnet restore "ReportService/ReportService.Api/ReportService.Api.csproj"
 COPY . .
-WORKDIR "/src/ReportService/ReportService/ReportService.Api"
+WORKDIR "/src/ReportService/ReportService.Api"
 RUN dotnet build "ReportService.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish

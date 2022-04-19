@@ -1,5 +1,7 @@
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using ReportService.Application;
+using ReportService.Data;
 using ReportService.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +20,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddTransient<IReportRepository, ReportRepository>();
+builder.Services.AddTransient<ReportApp>();
 builder.Services.AddDbContext<ReportContext>(options =>
 {
     var connString = builder.Configuration.GetConnectionString("DefaultConnection");

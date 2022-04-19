@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField'
 import './WriteCommentBar.css'
 import SendIcon from '@material-ui/icons/Send';
-import postService from '../../services/post.service';
+import commentService from '../../services/comment.service';
 const useStyles = makeStyles({
   root: {
     width: 480,
@@ -19,10 +19,10 @@ export default function WriteCommentBar({postId}) {
 
     
     const classes = useStyles();
-    const [postText, setPostText] = useState({});
+    const [postText, setPostText] = useState("");
    
     const postComment = () => {
-      postService.commentOnPost({postid: postId, body: postText}).then(() => {
+      commentService.AddComment(postId, postText).then(() => {
         setPostText("");
       })
     }
