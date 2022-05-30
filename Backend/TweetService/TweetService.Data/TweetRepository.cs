@@ -25,6 +25,11 @@ namespace TweetService.Data
                 TweeterId = tweet.TweeterId,
                 Body = tweet.Body
             });
+            await publishEndpoint.Publish<IPostReadyForReviewEvent>(new
+            {
+                PostId = tweet.TweeterId,
+                Body = tweet.Body
+            });
         }
 
         public async Task DeleteTweetAsync(Guid guid)

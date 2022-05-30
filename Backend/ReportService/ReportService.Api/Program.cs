@@ -1,4 +1,6 @@
 using MassTransit;
+using MassTransit.Configuration;
+using MessagingModels;
 using Microsoft.EntityFrameworkCore;
 using ReportService.Application;
 using ReportService.Data;
@@ -30,6 +32,7 @@ builder.Services.AddDbContext<ReportContext>(options =>
 
 builder.Services.AddMassTransit(x =>
 {
+    x.RegisterConsumer<PostRejectedConsumer>();
     x.UsingRabbitMq((cfx, cnf) =>
     {
         cnf.Host(Environment.GetEnvironmentVariable("RabbitMQConnectionString"));

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-PostScanner-1FD386B2-CBEC-47AF-B0FC-B2975AFD4F64</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Google.Cloud.Language.V1" Version="2.3.0" />
+        <PackageReference Include="MassTransit.Abstractions" Version="8.0.2" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.2" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+        <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\MessagingModels\MessagingModels.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="kwetter-351809-e4ce43930922.json" />
+      <Resource Include="kwetter-dev-credentials.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+</Project>

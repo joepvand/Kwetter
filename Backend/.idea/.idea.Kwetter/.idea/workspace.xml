@@ -15,13 +15,35 @@
     <projectFile profileName="IIS Express">CommentService/CommentService.Api/CommentService.Api.csproj</projectFile>
     <projectFile profileName="ExampleService">ReportService/ReportService.Api/ReportService.Api.csproj</projectFile>
     <projectFile profileName="IIS Express">ReportService/ReportService.Api/ReportService.Api.csproj</projectFile>
+    <projectFile profileName="PostScanner">PostScanner/PostScanner/PostScanner.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="21a6325f-eed1-426a-b3e0-efaccaecd425" name="Changes" comment="" />
+    <list default="true" id="21a6325f-eed1-426a-b3e0-efaccaecd425" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/MessagingModels/IPostReadyForReviewEvent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MessagingModels/IPostRejectedEvent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PostScanner/PostScanner/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PostScanner/PostScanner/Consumers/PostPostedConsumer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PostScanner/PostScanner/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PostScanner/PostScanner/GoogleCloudClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReportService/ReportService.Application/PostRejectedConsumer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Kwetter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Kwetter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kwetter.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Kwetter.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportService/ReportService.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportService/ReportService.Api/ReportService.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.Api/ReportService.Api.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportService/ReportService.Application/ReportService.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.Application/ReportService.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TweetService/TweetService.Data/TweetRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TweetService/TweetService.Data/TweetRepository.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/PostScanner/PostScanner.Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8530471134f44c4bf28933c370e42bf87c816f9815e623bab026ed70608a37/LanguageService.g.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -30,6 +52,9 @@
     <option name="selectedTabId" value="SWEA" />
   </component>
   <component name="ProjectId" id="281C9Y84xSzrwSvn34UbzgTW1Qk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -40,7 +65,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.AuthService.Api: AuthService">
+  <component name="RunManager" selected=".NET Launch Settings Profile.PostScanner">
     <configuration name="AuthService.Api: AuthService" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Auth/AuthService.Api/AuthService.Api.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
@@ -161,6 +186,21 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="PostScanner" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PostScanner/PostScanner/PostScanner.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="PostScanner" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
     <configuration name="ProfileService.Api" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ProfileService/ProfileService.Api/ProfileService.Api.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
@@ -253,8 +293,30 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="21a6325f-eed1-426a-b3e0-efaccaecd425" name="Changes" comment="" />
+      <created>1653902323312</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653902323312</updated>
+      <workItem from="1653902335515" duration="2692000" />
+    </task>
+    <servers />
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

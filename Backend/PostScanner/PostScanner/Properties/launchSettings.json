@@ -1,0 +1,12 @@
+﻿{
+  "profiles": {
+    "PostScanner": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
+        "GOOGLE_APPLICATION_CREDENTIALS" : "kwetter-dev-credentials.json",
+      }
+    }
+  }
+}

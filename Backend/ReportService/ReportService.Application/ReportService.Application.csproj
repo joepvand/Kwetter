@@ -7,7 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\MessagingModels\MessagingModels.csproj" />
 		<ProjectReference Include="..\ReportService.Data\ReportService.Data.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="MassTransit.Abstractions" Version="8.0.2" />
 	</ItemGroup>
 
 </Project>

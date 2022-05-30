@@ -70,6 +70,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService.Application",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService.Api", "ReportService\ReportService.Api\ReportService.Api.csproj", "{98C14C6C-1C71-4DA9-8683-E3DFE30161A1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostScanner", "PostScanner", "{A98E9586-3750-418F-980F-9CA3F48458DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostScanner", "PostScanner\PostScanner\PostScanner.csproj", "{1A281DB0-847C-4E3C-9EDE-09E51DB1CD29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -172,6 +176,10 @@ Global
 		{98C14C6C-1C71-4DA9-8683-E3DFE30161A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98C14C6C-1C71-4DA9-8683-E3DFE30161A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98C14C6C-1C71-4DA9-8683-E3DFE30161A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A281DB0-847C-4E3C-9EDE-09E51DB1CD29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A281DB0-847C-4E3C-9EDE-09E51DB1CD29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A281DB0-847C-4E3C-9EDE-09E51DB1CD29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A281DB0-847C-4E3C-9EDE-09E51DB1CD29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,6 +207,7 @@ Global
 		{FF980360-C654-4335-920D-BE3965C266B4} = {79F21DE0-BA00-460A-962A-91C6141DA0B4}
 		{71B756B3-5F17-48AC-996B-9564663480C1} = {79F21DE0-BA00-460A-962A-91C6141DA0B4}
 		{98C14C6C-1C71-4DA9-8683-E3DFE30161A1} = {79F21DE0-BA00-460A-962A-91C6141DA0B4}
+		{1A281DB0-847C-4E3C-9EDE-09E51DB1CD29} = {A98E9586-3750-418F-980F-9CA3F48458DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E7E0967-B5BC-44A2-91D6-72BF5B39FE84}
