@@ -169,7 +169,7 @@
     },
     // Auth api with downroute
     {
-      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamPathTemplate": "/Auth/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -180,10 +180,22 @@
       "UpstreamPathTemplate": "/api/Auth/{everything}",
       "Key": "AuthDownroute"
     },
-
     //Auth API
     {
-      "DownstreamPathTemplate": "/",
+      "DownstreamPathTemplate": "/connect/token",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "4002"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/connect/token",
+      "Key": "Auth"
+    },
+    //Auth API
+    {
+      "DownstreamPathTemplate": "/Auth",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {

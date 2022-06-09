@@ -54,7 +54,11 @@ namespace TweetService.Application
 
         public Tweet GetTweetById(Guid tweetId)
         {
-            var tweet = this.tweetRepository.GetTweets().Single(x => x.Id == tweetId);
+            var tweet = this.tweetRepository.GetTweets().SingleOrDefault(x => x.Id == tweetId);
+            if (tweet == default)
+            {
+                throw new KeyNotFoundException($"Tweet {tweetId} not found");
+            }
             return tweet.Adapt<Tweet>();
         }
     }

@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using MessagingModels;
+using Microsoft.EntityFrameworkCore;
 using TweetService.Data.Context;
 using TweetService.Data.Models;
 
@@ -34,16 +35,17 @@ namespace TweetService.Data
 
         public async Task DeleteTweetAsync(Guid guid)
         {
-            var tweet = await _repo.Tweets.FindAsync(guid);
-            if (tweet != null)
+            var tweet = await _repo.Tweets.SingleOrDefaultAsync(x => x.Id == guid);
+            if (tweet != default)
             {
-                _repo.Tweets.Remove(tweet);
-
+                _repo.Tweets.Remove(_repo.Tweets.Single(x=> x.Id == guid));
                 await _repo.SaveChangesAsync();
             }
+            else
+            {
+                throw new KeyNotFoundException($"Tweet with id '{guid}' not found!");
 
-            throw new Exception($"Tweet with id '{guid}' not found!");
-
+            }
         }
 
         public IQueryable<Tweet> GetTweetsByUser(Guid userId)
@@ -61,7 +63,7 @@ namespace TweetService.Data
             var user = _repo.Users.Find(userId);
             if (user == null)
             {
-                throw new Exception($"User with id '{userId}' not found!");
+                throw new KeyNotFoundException($"User with id '{userId}' not found!");
             }
 
             var tweets = _repo.Tweets.Where(tweet => user.Following.Contains(tweet.TweeterId) || tweet.TweeterId == userId);

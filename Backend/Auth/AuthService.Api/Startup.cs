@@ -3,6 +3,7 @@ using AuthService.Application;
 using AuthService.Data;
 using AuthService.Data.Context;
 using AuthService.Model;
+using Helpers;
 using IdentityServer4.Services;
 using MassTransit;
 using Microsoft.AspNetCore.Identity;
@@ -109,6 +110,8 @@ namespace AuthService.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
                     "WebApp1 v1"));
             }
+            // global error handler
+            app.UseMiddleware<ExceptionHandelingMiddleware>();
             app.UseRouting();
             app.UseCors(x => x.AllowAnyMethod()
                 .AllowAnyHeader()

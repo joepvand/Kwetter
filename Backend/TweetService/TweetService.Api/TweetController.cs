@@ -27,17 +27,17 @@ namespace TweetService.Api
         }
 
         [HttpGet]
-        public IActionResult Get(string userId = "")
+        public IActionResult Get([FromQuery] string? userId)
         {
-            if (string.IsNullOrWhiteSpace(userId))
+            if (!string.IsNullOrWhiteSpace(userId))
             {
-                return Ok(this.tweetApp.GetTweetByUser(Guid.Parse(userId)));
+                return Ok(this.tweetApp.GetTweetByUser(Guid.Parse(userId!)));
             }
             var result = this.tweetApp.GetTweetByUser(HttpContext.GetUserId());
             return Ok(result);
         }
 
-        [HttpGet("/{tweetId}", Name = nameof(GetById))]
+        [HttpGet("{tweetId}", Name = nameof(GetById))]
         public IActionResult GetById([FromRoute] string tweetId)
         {
             var result = this.tweetApp.GetTweetById(Guid.Parse(tweetId));
@@ -58,15 +58,16 @@ namespace TweetService.Api
             return CreatedAtRoute(nameof(GetById), new { tweetId = result.Id }, result);
         }
 
-        [HttpDelete("/{tweetId}")]
+        [HttpDelete("{tweetId}")]
         public async Task<IActionResult> Delete([FromRoute] string tweetId)
         {
-            var result = this.tweetApp.GetTweetById(Guid.Parse(tweetId));
+            var guid = Guid.Parse(tweetId);
+            var result = this.tweetApp.GetTweetById(guid);
 
             if (result.TweeterId == HttpContext.GetUserId()
                 || HttpContext.GetUserRole() == Role.Admin)
             {
-                await tweetApp.DeleteTweet(Guid.Parse(tweetId));
+                await tweetApp.DeleteTweet(result.Id);
                 return NoContent();
             }
 

@@ -23,9 +23,9 @@ namespace CommentService.Api.Controllers
 
         // GET api/<CommentController>
         [HttpGet]
-        public IActionResult Get(string tweetId = "", string userId = "")
+        public IActionResult Get(string? tweetId = null, string? userId = null)
         {
-            var comments = this._app.GetFiltered(tweetId, userId);
+            var comments = this._app.GetFiltered(tweetId!, userId!);
             return Ok(comments);
         }
 

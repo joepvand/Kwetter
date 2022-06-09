@@ -1,3 +1,4 @@
+using Helpers;
 using MassTransit;
 using MassTransit.Configuration;
 using MessagingModels;
@@ -57,7 +58,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+// global error handler
+app.UseMiddleware<ExceptionHandelingMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

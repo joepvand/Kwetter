@@ -1,3 +1,4 @@
+using Helpers;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using ProfileService.Application;
@@ -66,7 +67,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+// global error handler
+app.UseMiddleware<ExceptionHandelingMiddleware>();
 app.MapControllers();
 
 using (var Scope = app.Services.CreateScope())

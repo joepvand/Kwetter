@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Helpers;
+using Microsoft.EntityFrameworkCore;
 using TweetService.Application;
 using TweetService.Data;
 using TweetService.Data.Context;
@@ -72,7 +73,8 @@ namespace TweetService.Api
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("CorsPolicy");
-
+            // global error handler
+            app.UseMiddleware<ExceptionHandelingMiddleware>();
             app.UseRouting();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

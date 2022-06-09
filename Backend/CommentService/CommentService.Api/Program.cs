@@ -1,6 +1,7 @@
 using CommentService.Application;
 using CommentService.Data;
 using CommentService.Data.Context;
+using Helpers;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
@@ -52,7 +53,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+// global error handler
+app.UseMiddleware<ExceptionHandelingMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();

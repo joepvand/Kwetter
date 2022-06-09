@@ -57,6 +57,7 @@ namespace CommentService.Data
                 TweetId = comment.TweetId,
                 Body = comment.Body
             });
+            
             await this._commentContext.SaveChangesAsync();
 
             return res.Entity;
