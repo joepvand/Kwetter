@@ -14,5 +14,7 @@ namespace TweetService.Data.Models
         public Guid TweeterId { get; set; }
         public string Body { get; set; }
         public DateTime TweetedAt { get; set; }
+        
+        public string ImageBase64 { get; set; }
     }
 }

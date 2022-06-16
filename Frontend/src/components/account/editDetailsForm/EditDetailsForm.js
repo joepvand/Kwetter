@@ -6,6 +6,7 @@ export default function EditDetailsForm({accountDetails, callback}) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [bio, setBio] = useState("");
 
@@ -13,16 +14,17 @@ export default function EditDetailsForm({accountDetails, callback}) {
     callback({
         username: username,
         email: email,
+        oldPass: oldPassword,
         password: password,
         passwordConfirm: passwordConfirm,
         bio: bio
     });
-  }, [username, email, passwordConfirm, password, bio, callback])
+  }, [username, email, passwordConfirm, oldPassword, password, bio, callback])
 
   useEffect(() => {
     setUsername(accountDetails.displayName);
     setEmail(accountDetails.email);
-    setBio(accountDetails.bio);
+    setBio(accountDetails.biography);
   },[accountDetails])
 
   return (
@@ -39,19 +41,19 @@ export default function EditDetailsForm({accountDetails, callback}) {
 
       <TextField
         id="standard-basic"
-        label="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        label="Bio"
+        rows={3}
+        value={bio}
+        onChange={(e) => setBio(e.target.value)}
       />
       </div>
       <div className="DetailsFormItem"> 
 
       <TextField
         id="standard-basic"
-        label="Bio"
-        rows={3}
-        value={bio}
-        onChange={(e) => setBio(e.target.value)}
+        label="Current Password"
+        type="password"
+        onChange={(e) => setOldPassword(e.target.value)}
       />
       </div>
       <TextField

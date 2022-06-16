@@ -8,7 +8,7 @@ public class PostPostedConsumer : IConsumer<IPostReadyForReviewEvent>
 {
     public async Task Consume(ConsumeContext<IPostReadyForReviewEvent> context)
     {
-        await Console.Out.WriteLineAsync($"Post {context.Message.PostId} is ready for review");
+        await Console.Out.WriteLineAsync($"Post {context.Message.PostId} with message {context.Message.Body} is ready for review");
 
 
         if (!GoogleCloudClient.IsApproved(context.Message.Body))

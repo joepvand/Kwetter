@@ -21,9 +21,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Comment = ({key, postedBy, text, datePosted}) => {
+const Comment = ({key, postedBy, text}) => {
   const classes = useStyles();
-
         return (
           <div id="comment">
             <ListItem key={key} alignItems="flex-start">
@@ -43,7 +42,6 @@ const Comment = ({key, postedBy, text, datePosted}) => {
                   </>
                 }
               />
-              <Typography className="commentText">{datePosted}</Typography>
               </div>
             </ListItem>
 

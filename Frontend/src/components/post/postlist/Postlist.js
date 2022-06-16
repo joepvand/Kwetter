@@ -2,10 +2,11 @@ import React from "react";
 import Post from "../post/Post";
 import { useState, useEffect } from "react";
 import PostService from '../../../services/post.service'
+import commentService from "../../../services/comment.service";
 export default function Postlist({username}) {
   const [posts, setPosts] = useState();
   const [loading, setLoading] = useState(true);
-
+  const [comments, setComments] = useState();
   useEffect(() => {
     if (username){
       PostService.getPostByUsername(username).then(result => {
@@ -33,7 +34,6 @@ export default function Postlist({username}) {
           subtitle={post.body}
           postedBy={post.tweeterId}
           datePosted={post.tweeterId}
-          commentsList={null}
         ></Post>
       ))}
       

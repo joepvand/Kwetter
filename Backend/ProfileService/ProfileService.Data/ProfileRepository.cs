@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using ProfileService.Data;
 using ProfileService.Data.Context;
 using ProfileService.Data.Models;
@@ -23,6 +24,11 @@ namespace ProfileService.Data
             await _repo.SaveChangesAsync();
 
             await publishEndpoint.SendUserFollowedEvent(userId, userToFollow);
+        }
+
+        public Task<List<Profile>> GetAll()
+        {
+            return _repo.Profiles.ToListAsync();
         }
 
         public Profile GetProfile(Guid userId)

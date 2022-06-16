@@ -13,6 +13,7 @@ class PostService {
     return instance
       .post('/Tweet',{
         body: post.body,
+        imageBase64: post.imgData
       })
       .then((response) => {
         return response.data;

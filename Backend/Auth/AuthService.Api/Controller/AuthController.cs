@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 using AuthService.Api.Constants;
@@ -24,6 +25,18 @@ namespace AuthService.Controller
 
         public UserManager<ApplicationUser> UserManager { get; }
         public RoleManager<IdentityRole> RoleManager { get; }
+
+        [HttpPatch]
+        public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordRequest request)
+        {
+            if (request.NewConfirm != request.New)
+                return BadRequest("Passwords does not match");
+            
+            var user = await UserManager.GetUserAsync(ClaimsPrincipal.Current);
+            await UserManager.ChangePasswordAsync(user, request.Current, request.New);
+
+            return Ok("Password updated");
+        }
 
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] SignupRequest request)
@@ -52,5 +65,7 @@ namespace AuthService.Controller
 
             return BadRequest(errors);
         }
+        
+        
     }
 }

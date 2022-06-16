@@ -13,15 +13,6 @@ const WhiteTextTypography = withStyles({
 })(Typography);
 
 export default function SidebarHeader({ user }) {
-  const [showFollowButton, setShowFollowButton] = useState(false);
-  useEffect(() => {
-    const accountOnPage = user.username;
-    let currentUser = {};
-    authService.getCurrentUser().then((res) => {
-      currentUser = res.username;
-      setShowFollowButton(currentUser !== accountOnPage);
-    })
-  });
 
   return (
     <div>
@@ -29,24 +20,16 @@ export default function SidebarHeader({ user }) {
         <WhiteTextTypography variant="h5">
           {user?.displayName}
         </WhiteTextTypography>
-        <WhiteTextTypography variant="h6">
-          {user?.username}
-        </WhiteTextTypography>
-        <Divider />
-        <WhiteTextTypography>{user?.role}</WhiteTextTypography>
         <Divider />
 
+
         <img
-          src={user?.profilePicture}
+          src={"data:image/png;base64," + user?.profilePictureBase64}
           className="profilePicture"
           alt="avatar"
         />
 
-        <Typography>{user?.bio}</Typography>
-
-        {showFollowButton === true ? (
-          <FollowButton userDetails={user} />
-        ) : null}
+        <Typography>{user?.biography}</Typography>
       </div>
     </div>
   );

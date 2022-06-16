@@ -11,7 +11,7 @@ export default function Profilepage() {
     let history = useHistory();
   const [userDetails, setUserDetails] = useState({});
   useEffect(() => {
-    UserService.getUserByName(params.id).then(result => setUserDetails(result));
+    UserService.getById(params.id).then(result => setUserDetails(result));
   }, [params.id])
 
   if (!userDetails) {

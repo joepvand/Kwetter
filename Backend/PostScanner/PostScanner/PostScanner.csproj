@@ -22,7 +22,7 @@
 
     <ItemGroup>
       <Content Remove="kwetter-351809-e4ce43930922.json" />
-      <Resource Include="kwetter-dev-credentials.json">
+      <Resource Include="PostScanner_default_credentials.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
     </ItemGroup>

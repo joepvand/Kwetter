@@ -31,7 +31,9 @@ export default function WritepostBar({onclick}) {
         let reader = new FileReader();
         reader.readAsDataURL(input[0]);
         reader.onloadend = () => {
-            setImage(reader.result);
+
+
+            setImage(reader.result.replace("data:image/png;base64,", ""));
                    }
     });
     const [image, setImage] = useState("");

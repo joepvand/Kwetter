@@ -37,7 +37,7 @@ class CommentService {
   }
   GetByPost(id) {
     return instance
-      .get('tweetId='+id)
+      .get('', { params: {tweetId: id}})
       .then((response) => {
         return response.data;
       });

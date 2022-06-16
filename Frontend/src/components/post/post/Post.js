@@ -17,6 +17,7 @@ import './Post.css'
 import ReportDialog from "../reportDialog/ReportDialog";
 import {useHistory} from 'react-router-dom';
 import userService from "../../../services/user.service";
+import commentService from "../../../services/comment.service";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,8 +48,6 @@ export default function Post({
   imgData,
   subtitle,
   postedBy,
-  datePosted,
-  commentsList,
   postId
 }) {
   const history = useHistory();
@@ -56,6 +55,8 @@ export default function Post({
   const [expanded, setExpanded] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [poster, setPoster] = React.useState({});
+  const [comments, setComments] = React.useState([]);
+
 
   const [showReportDialog, setShowReportDialog] = useState(false);
   const handleExpandClick = () => {
@@ -68,11 +69,11 @@ export default function Post({
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  
   useEffect(() => {
 
         userService.getById(postedBy).then(user => setPoster(user));
-      
+        commentService.GetByPost(postId).then(cmt => setComments(cmt));
   }, [postedBy])
 
   return (
@@ -84,14 +85,14 @@ export default function Post({
         avatar={
           <img src={'data:image/png;base64,'+poster.profilePictureBase64} className="profilePicture" alt="Profile"/>
         }
-        title={"Posted by " + poster.displayName +" on "+ datePosted}
+        title={"Posted by " + poster.displayName}
         
       />
        <Button className="optionsButton" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
      Open Menu
     </Button>
          </div>
-      {imgData ? ( <CardMedia className={classes.media} image={imgData} />) : null}
+      {imgData ? ( <CardMedia className={classes.media} image={"data:image/png;base64," + imgData} />) : null}
 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -112,7 +113,7 @@ export default function Post({
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <WriteCommentBar postId={postId}/>
-        <Commentlist comments={commentsList}/>
+        <Commentlist comments={comments}/>
       </Collapse>
     </Card>
 

@@ -183,6 +183,16 @@ services:
       - "5436"
     volumes: 
       - report_db:/var/lib/postgresql/data
+  # POST SCANNER
+  postscanner:
+    depends_on:
+      - "rabbitmq"
+    hostname: postscanner
+    build:
+      dockerfile: PostScanner.Dockerfile
+    environment:
+      - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
+      - GOOGLE_APPLICATION_CREDENTIALS=PostScanner_default_credentials.json
   # VOLUMES
 volumes:
   tweet_db:

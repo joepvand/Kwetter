@@ -4,6 +4,8 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["PostScanner/PostScanner/PostScanner.csproj", "PostScanner/"]
+COPY ["PostScanner/PostScanner/kwetter-dev-credentials.json", "PostScanner/"]
+
 RUN dotnet restore "PostScanner/PostScanner/PostScanner.csproj"
 COPY . .
 WORKDIR "/src/PostScanner"

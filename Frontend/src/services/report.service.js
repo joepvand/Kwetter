@@ -12,8 +12,8 @@ class ReportService {
   Add(postid, reason) {
     return instance
       .post({
-        PostId: postid,
-        Reason: reason
+        postId: postid,
+        reason: reason
       })
       .then((response) => {
         return response.data;

@@ -31,5 +31,10 @@ namespace ProfileService.Application
         {
             return profileRepository.UpdateProfile(userId, profileInfo);
         }
+
+        public Task<List<Profile>> GetAll()
+        {
+            return profileRepository.GetAll();
+        }
     }
 }

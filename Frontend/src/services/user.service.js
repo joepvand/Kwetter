@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = process.env.REACT_APP_API_URL+'/Profile';
+const apiUrl = process.env.REACT_APP_API_URL;
 const token = JSON.parse(localStorage.getItem('user'))?.access_token;
 const instance = axios.create({
     baseURL: apiUrl,
@@ -12,64 +12,33 @@ class UserService {
 
     getById(id){
         return instance
-            .get(id)
+            .get("Profile/" +id)
             .then(response => {  
               return response.data;
             })
         
     }
-    getUserByName(username) {
-        if (username){
-            return instance
-            .get("user?name="+username)
-            .then(response => {  
-              return response.data;
-            })
-            .catch(error => {
-                console.log(error)
-            });
-        }
-        
-      }
 
-    followUserByName(username){
-        return instance.post("user/follow", {
-            usernameToFollow: username
-        })
+    getAll(){
+        return instance.options("Profile")
         .then(response => {
-            return response.data;
-        })
-    }
-    unFollowUserByName(username){
-        return instance.post("user/unfollow", {
-            usernameToFollow: username
-        })
-        .then(response => {
-            return response.data;
+            return response.data
         })
     }
 
-    isFollowing(username){
-        return instance.get("user/isfollowing?username="+username)
-        .then(response => {
-            return response.data;
+    updatePassword(oldPass, newPass, newPassConfirm){
+        return instance.put("Auth", {
+            new: newPass,
+            newConfirm: newPassConfirm,
+            current: oldPass
         })
-    }
-
-    searchUsers(query){
-        return instance.get("user/search?query="+query)
-        .then(response => {
-            return response.data;
-        })
+        .then((res) => {return res.data})
     }
     updateUserDetails(userDetails){
-        return instance.put("user", {
+        return instance.put("Profile", {
             displayName: userDetails.username,
-            profilePictureData: userDetails.profilePicture,
-            email: userDetails.email,
-            password: userDetails.password,
-            confirmPassword: userDetails.passwordConfirm,
-            bio: userDetails.bio
+            profilePictureBase64: userDetails.profilePicture,
+            biography: userDetails.bio
         })
         .then((res) => {return res.data})
     }

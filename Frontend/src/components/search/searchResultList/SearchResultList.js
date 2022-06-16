@@ -12,7 +12,11 @@ import { Typography } from "@material-ui/core";
 export default function SearchResultList({ query }) {
   const [results, setResults] = useState([]);
   useEffect(() => {
-    userService.searchUsers(query).then((response) => setResults(response));
+    userService.getAll().then((response) => {
+      var filtered = response.data.filter(user => user.displayName.contains(query));
+      setResults(filtered)
+    }
+      );
   }, [query]);
   return results.length !== 0 ? (
     <Paper className="listContainer">
