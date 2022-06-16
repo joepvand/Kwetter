@@ -2,13 +2,17 @@
 {
     public class Report
     {
-        public Report(Guid tweetId, Guid reporterGuid, string reason)
+        public Report(Guid id, Guid tweetId, Guid reporterGuid, string reason, string closureMessage = "")
         {
+            this.Id = id;
             this.Status = ReportStatus.AWAIT_RESPONSE;
             this.TweetId = tweetId;
             this.ReporterUserId = reporterGuid;
             this.Body = reason;
+
+            this.ClosureMessage = closureMessage;
         }
+
         public Guid Id { get; private set; }
         public Guid TweetId { get; private set; }
         public Guid ReporterUserId { get; private set; }

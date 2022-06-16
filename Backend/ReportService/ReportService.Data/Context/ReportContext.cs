@@ -13,7 +13,7 @@ namespace ReportService.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Report>().Property(x => x.ReportedUserId).HasConversion(v => v.ToString(), v => Guid.Parse(v));
+            modelBuilder.Entity<Report>().Property(x => x.ReporterUserId).HasConversion(v => v.ToString(), v => Guid.Parse(v));
             modelBuilder.Entity<Report>().Property(x => x.TweetId).HasConversion(v => v.ToString(), v => Guid.Parse(v));
 
             base.OnModelCreating(modelBuilder);

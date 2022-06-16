@@ -10,5 +10,5 @@ public interface ICommentRepository
     Task DeleteByIdAsync(Guid id);
     IQueryable<Data.Models.Comment> GetAll();
 
-    Task<Data.Models.Comment> CreateAsync(DomainModels.Comment comment);
+    Task<Data.Models.Comment> CreateAsync(DomainModels.Comment comment, Guid creatorId);
 }

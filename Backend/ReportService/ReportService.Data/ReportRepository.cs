@@ -25,15 +25,24 @@ namespace ReportService.Data
             return this._context.Reports.AsQueryable();
         }
 
-        public Task<Report> GetById(Guid id)
+        public async Task<Report> GetById(Guid id)
         {
-            return this._context.Reports.SingleAsync(x => x.Id == id);
+            var result =  await this._context.Reports.SingleOrDefaultAsync(x => x.Id == id);
+
+            if (result == default)
+            {
+                throw new KeyNotFoundException($"Report {id} was not found!");
+            }
+            return result;
         }
 
         public async Task DeleteById(Guid id)
         {
-            var example = this._context.Reports.SingleAsync(x => x.Id == id);
-            this._context.Reports.Remove(await example);
+            var example = await this._context.Reports.SingleOrDefaultAsync(x => x.Id == id);
+            if (example == default)
+                throw new KeyNotFoundException($"Report {id} not found!");
+
+            this._context.Reports.Remove(example);
             await this._context.SaveChangesAsync();
         }
 
@@ -42,9 +51,9 @@ namespace ReportService.Data
             var dataModel = report.Adapt<Report>();
 
             var response = await _context.Reports.AddAsync(dataModel);
+            await _context.SaveChangesAsync();
             return response.Entity;
         }
-
 
         public async Task Update(Guid id, ReportStatus status, string closureMessage = "")
         {

@@ -37,30 +37,27 @@ namespace CommentService.Application
             return this._repository.DeleteByIdAsync(id);
         }
 
-        public async Task<Comment> CreateAsync(Comment comment)
+        public async Task<Comment> CreateAsync(Comment comment, Guid creatorId)
         {
-            return (await this._repository.CreateAsync(comment)).Adapt<Comment>(); ;
+            return (await this._repository.CreateAsync(comment, creatorId)).Adapt<Comment>();
         }
 
-        public List<Comment> GetFiltered(string tweetId, string userId)
+        public List<Comment> GetFiltered(string? tweetId, string? userId)
         {
             var tweetNull = string.IsNullOrWhiteSpace(tweetId);
             var userNull = string.IsNullOrWhiteSpace(userId);
 
-            if (tweetNull && userNull)
-                return this.GetAll();
-            if (tweetNull && !userNull)
+            return tweetNull switch
             {
-                return GetByTweet(Guid.Parse(userId));
-            }
-            if (!tweetNull && userNull)
-            {
-                return GetByUser(Guid.Parse(tweetId));
-            }
-
-            return GetByUser(Guid.Parse(userId))
-                .Where(x => x.TweetId == Guid.Parse(tweetId)).ToList();
-
+                // allebei null
+                true when userNull => this.GetAll(),
+                // Tweetid null, user niet null
+                true when !userNull => GetByUser(Guid.Parse(userId!)),
+                // User null, tweet niet null.
+                false when userNull => GetByTweet(Guid.Parse(tweetId!)),
+                // allebei niet null
+                _ => GetByUser(Guid.Parse(userId!)).Where(x => x.TweetId == Guid.Parse(tweetId!)).ToList()
+            };
         }
     }
 }

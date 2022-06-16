@@ -20,8 +20,8 @@ namespace ReportService.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var comments = this._app.GetAll();
-            return Ok(comments);
+            var reports = this._app.GetAll();
+            return Ok(reports);
         }
 
         // GET api/<CommentController>/5
@@ -42,7 +42,7 @@ namespace ReportService.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddReportRequest req)
         {
-            var res = await this._app.Add(new Report(Guid.Parse(req.PostId), HttpContext.GetUserId(), req.Reason));
+            var res = await this._app.Add(new Report(new Guid(),Guid.Parse(req.PostId), HttpContext.GetUserId(), req.Reason));
 
             return Ok(res);
         }
@@ -56,7 +56,6 @@ namespace ReportService.Api.Controllers
                 req.Reason);
 
             return Ok();
-
         }
     }
 }

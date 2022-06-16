@@ -25,7 +25,7 @@ namespace CommentService.Api.Controllers
         [HttpGet]
         public IActionResult Get(string? tweetId = null, string? userId = null)
         {
-            var comments = this._app.GetFiltered(tweetId!, userId!);
+            var comments = this._app.GetFiltered(tweetId, userId);
             return Ok(comments);
         }
 
@@ -40,7 +40,7 @@ namespace CommentService.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateCommentRequest value)
         {
-            var result = await this._app.CreateAsync(value.Adapt<Comment>());
+            var result = await this._app.CreateAsync(value.Adapt<Comment>(), HttpContext.GetUserId());
             return Ok(result);
         }
 

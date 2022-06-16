@@ -19,28 +19,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21a6325f-eed1-426a-b3e0-efaccaecd425" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PostScanner/PostScanner.Tests/PostScanner.Tests.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PostScanner/PostScanner.Tests/UnitTest1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PostScanner/PostScanner.Tests/kwetter-dev-credentials.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReportService/ReportService.Data/Migrations/20220616090119_Initial.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReportService/ReportService.Data/Migrations/20220616090119_Initial.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReportService/ReportService.Data/Migrations/ReportContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Kwetter/.idea/efCoreCommonOptions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Kwetter/.idea/efCoreCommonOptions.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Kwetter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Kwetter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/6/16970332b2f6e4ab5183dbbb5fcdba205e0bbce3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/8/28bd50bf73aa6e32012dbfbcd94c8ba8ee1ebb05" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/3/333c54ae33178cd2d11e06ebaa52409bb253d23f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/7/37450e92eaa5c6541a35b135550a2034e76e3e8d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/2/5231f8bf5cc003ed0d086f2586b7d37703c80aaa" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/8/58685df334b04b166c7458f4fafa06d75eecb859" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/d/5d991ad04f3d4be24ba4905d8fcae3ebcc817a5b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/2/d28ae5c3506151ceef0db3ddcc88c3a0da9a0352" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/7/073b91588e50f1456104a5eabc7f1262c2933d44" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/b/7bb8ec90e3e5eba48fecac2d763fd396374f3b16" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommentService/CommentService.Api/Controllers/CommentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CommentService/CommentService.Api/Controllers/CommentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommentService/CommentService.Api/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/CommentService/CommentService.Api/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommentService/CommentService.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/CommentService/CommentService.Api/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helpers/ExceptionHandelingMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/ExceptionHandelingMiddleware.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostScanner/PostScanner/Consumers/PostPostedConsumer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PostScanner/PostScanner/Consumers/PostPostedConsumer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostScanner/PostScanner/GoogleCloudClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PostScanner/PostScanner/GoogleCloudClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommentService/CommentService.Application/CommentApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CommentService/CommentService.Application/CommentApp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommentService/CommentService.Data/CommentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CommentService/CommentService.Data/CommentRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommentService/CommentService.Data/ICommentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CommentService/CommentService.Data/ICommentRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReportService/ReportService.Api/Controllers/ReportController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.Api/Controllers/ReportController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReportService/ReportService.Api/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.Api/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReportService/ReportService.Data/Models/Report.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.Data/Models/Report.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportService/ReportService.Api/ReportService.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.Api/ReportService.Api.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportService/ReportService.Application/PostRejectedConsumer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.Application/PostRejectedConsumer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportService/ReportService.Application/ReportApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.Application/ReportApp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportService/ReportService.Data/Context/ReportContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.Data/Context/ReportContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportService/ReportService.Data/ReportRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.Data/ReportRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportService/ReportService.Data/ReportService.Data.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.Data/ReportService.Data.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportService/ReportService.DomainModels/Report.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReportService/ReportService.DomainModels/Report.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TweetService/TweetService.Application/TweetApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TweetService/TweetService.Application/TweetApplication.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,11 +60,11 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1e8feaadf5c3fa14d36ea2a638c432a2e1a47b7837d8b83d88303c5d9c15cf/AsyncValueTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9d4f4ac7db6d2c5d183ab2d92602280ed4349fd6e6a1b6313546b3d01fdab5/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PostScanner/PostScanner.Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CommentService/CommentService.Api/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6cc4cc76547babef243f5335c2876916e707053e03a32eefdaf87f656c0f2e7/RabbitMqHostConfigurationExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/723c3eb8cb9080ceb887d8a690ac8ccb2d3d8de9f4cc49d26cede3198aab6e/RabbitMqHostConfigurationExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/575c31ecc35a636b6f962cb71d53992552941a18982aae1c8e6c16305cc3761b/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/17a25bf4cd58852e31b6bc798fef1d6289441360eea1912bf89a9b4fd337a3/SingleQueryingEnumerable.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -86,7 +85,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="Docker" />
+    <property name="settings.editor.selected.configurable" value="swagger" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.ReportService.Api: ExampleService">
@@ -326,7 +325,7 @@
       <updated>1653902323312</updated>
       <workItem from="1653902335515" duration="2692000" />
       <workItem from="1655109878703" duration="1962000" />
-      <workItem from="1655112477429" duration="4934000" />
+      <workItem from="1655112477429" duration="13248000" />
     </task>
     <servers />
   </component>
@@ -348,23 +347,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/ReportService/ReportService.Api/Controllers/ReportController.cs</url>
-          <line>44</line>
-          <properties documentPath="C:\git\Fontys\Kwetter\Backend\ReportService\ReportService.Api\Controllers\ReportController.cs" initialLine="44" containingFunctionPresentation="method 'Add'">
-            <startOffsets>
-              <option value="1167" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1270" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

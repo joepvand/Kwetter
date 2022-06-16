@@ -14,6 +14,6 @@ public class PostRejectedConsumer : IConsumer<IPostRejectedEvent>
     }
     public async Task Consume(ConsumeContext<IPostRejectedEvent> context)
     {
-        await this.app.Add(new Report(context.Message.Id, Guid.Empty, "Rejected by automatic scanning"));
+        await this.app.Add(new Report(new Guid(), context.Message.Id, Guid.Empty, "Rejected by automatic scanning"));
     }
 }

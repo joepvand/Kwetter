@@ -49,11 +49,11 @@ namespace CommentService.Data
             await this._commentContext.SaveChangesAsync();
         }
 
-        public async Task<Data.Models.Comment> CreateAsync(Comment comment)
+        public async Task<Data.Models.Comment> CreateAsync(Comment comment, Guid creatorId)
         {
             var res = await this._commentContext.Comments.AddAsync(new Models.Comment()
             {
-                CommenterId = comment.CommenterId,
+                CommenterId = creatorId,
                 TweetId = comment.TweetId,
                 Body = comment.Body
             });

@@ -30,6 +30,7 @@ namespace TweetService.Application
             {
                 Body = tweet.Body,
                 TweeterId = tweet.TweeterId,
+
             };
 
             await this.tweetRepository.AddTweetAsync(obj);

@@ -19,12 +19,15 @@ namespace ReportService.Application
         }
         public List<Report> GetAll()
         {
-            return this._repository.GetAll().ProjectToType<Report>().ToList();
+            return this._repository.GetAll()
+                .Select(x => new Report(x.Id, x.TweetId, x.ReporterUserId, x.Body, String.Empty)).ToList();
         }
 
         public async Task<Report> GetById(Guid id)
         {
-            return (await this._repository.GetById(id)).Adapt<Report>();
+            var data = await this._repository.GetById(id);
+
+            return new Report(data.Id, data.TweetId, data.ReporterUserId, data.Body);
         }
 
         public async Task DeleteById(Guid id)
