@@ -351,3 +351,5 @@ MigrationBackup/
 .ionide/
 
 Backend/PostScanner/PostScanner/kwetter-dev-credentials.json
+
+Backend/PostScanner/PostScanner/PostScanner_default_credentials.json
