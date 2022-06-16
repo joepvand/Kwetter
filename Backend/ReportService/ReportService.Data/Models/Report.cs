@@ -13,7 +13,7 @@ namespace ReportService.Data.Models
         [Key]
         public Guid Id { get; set; }
         public Guid TweetId { get; set; }
-        public Guid ReportedUserId { get; set; }
+        public Guid ReporterUserId { get; set; }
         public string Body { get; set; }
         public ReportStatus Status { get; set; }
         public string ClosureMessage { get; set; }

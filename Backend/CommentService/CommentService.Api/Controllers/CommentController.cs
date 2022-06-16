@@ -30,7 +30,7 @@ namespace CommentService.Api.Controllers
         }
 
         // GET api/<CommentController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = nameof(GetById))]
         public async Task<IActionResult> GetById(string id)
         {
             return Ok(await this._app.GetByIdAsync(Guid.Parse(id)));
@@ -41,7 +41,7 @@ namespace CommentService.Api.Controllers
         public async Task<IActionResult> Post([FromBody] CreateCommentRequest value)
         {
             var result = await this._app.CreateAsync(value.Adapt<Comment>());
-            return CreatedAtRoute(nameof(GetById), new { id = result.Id }, result);
+            return Ok(result);
         }
 
         // DELETE api/<CommentController>/5

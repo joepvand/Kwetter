@@ -44,8 +44,7 @@ namespace ReportService.Api.Controllers
         {
             var res = await this._app.Add(new Report(Guid.Parse(req.PostId), HttpContext.GetUserId(), req.Reason));
 
-            return CreatedAtRoute(nameof(GetById), new { id = res.Id.ToString() }, res);
-
+            return Ok(res);
         }
 
         [HttpPatch("{id}")]

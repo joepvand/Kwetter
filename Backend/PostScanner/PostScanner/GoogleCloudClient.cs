@@ -12,4 +12,11 @@ public class GoogleCloudClient
 
         return response.Entities.ToList();
     }
+
+    public static bool IsApproved(string body)
+    {
+        var analyze = GoogleCloudClient.AnalyzeEntities(body);
+        return analyze.Where(x => x.Sentiment.Score < 0.5)
+            .Any(x => x.Type is Entity.Types.Type.Organization or Entity.Types.Type.Person);
+    }
 }

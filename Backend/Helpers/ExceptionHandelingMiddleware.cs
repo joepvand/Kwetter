@@ -53,6 +53,7 @@ namespace Helpers;
 
                 var result = JsonSerializer.Serialize(new {message});
                 Console.WriteLine(result);
+                Console.WriteLine(error.StackTrace);
                 await response.WriteAsync(result);
             }
         }
