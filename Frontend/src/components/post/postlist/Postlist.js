@@ -9,7 +9,7 @@ export default function Postlist({username}) {
   const [comments, setComments] = useState();
   useEffect(() => {
     if (username){
-      PostService.getPostByUsername(username).then(result => {
+      PostService.getPostByUserId(username).then(result => {
         setPosts(result)
         setLoading(false);
       })

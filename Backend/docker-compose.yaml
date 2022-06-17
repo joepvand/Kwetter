@@ -104,18 +104,6 @@ services:
       - "5432"
     volumes: 
       - profile_db:/var/lib/postgresql/data
-  # NOTIFICATION SERVICE
-  notificationservice:
-    depends_on:
-      - "rabbitmq"
-    hostname: NotificationService
-    build:
-      dockerfile: NotificationService.Dockerfile
-    ports:
-      - "4004:4004"
-    environment:
-      - ASPNETCORE_URLS=http://+:4004
-      - RabbitMQConnectionString=amqp://username:password@rabbitmq:5672
   # GATEWAY
   gateway:
       build:

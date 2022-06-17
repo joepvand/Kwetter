@@ -11,12 +11,13 @@
 class ReportService {
   Add(postid, reason) {
     return instance
-      .post({
+      .post('', {
         postId: postid,
         reason: reason
       })
       .then((response) => {
-        return response.data;
+          return "Thank you for your report"
+
       });
   }
 

@@ -13,7 +13,8 @@ export default function SearchResultList({ query }) {
   const [results, setResults] = useState([]);
   useEffect(() => {
     userService.getAll().then((response) => {
-      var filtered = response.data.filter(user => user.displayName.contains(query));
+      console.log(response)
+      var filtered = response.filter(user => user.displayName.includes(query));
       setResults(filtered)
     }
       );

@@ -21,18 +21,18 @@ WebUI.openBrowser('')
 
 WebUI.navigateToUrl('http://localhost:3000/register')
 
-
 WebUI.setText(findTestObject('Object Repository/Page_React App/input_username_username'), RandStr.randomAlphabetic(15))
 
-WebUI.setText(findTestObject('Object Repository/Page_React App/input_Email Address_email'), RandStr.randomAlphabetic(15) +'@gmail.com')
+WebUI.setText(findTestObject('Object Repository/Page_React App/input_Email Address_email'), RandStr.randomAlphabetic(15) + 
+    '@gmail.com')
 
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_React App/input_Password_password'), '8SQVv/p9jVRYVY2uylmbWg==')
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_React App/input_Password_password'), 'wvRIfwE2MsfJ0/b6uu8sTw==')
 
 WebUI.click(findTestObject('Object Repository/Page_React App/button_Sign Up'))
 
-WebUI.delay(1);
+WebUI.delay(1)
 
-assert (WebUI.getUrl().equals("http://localhost:3000/"));
+assert WebUI.getUrl().equals('http://localhost:3000/')
 
 WebUI.closeBrowser()
 

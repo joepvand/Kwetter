@@ -9,8 +9,7 @@ import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.model.FailureHandling as FailureHandling
 import com.kms.katalon.core.testcase.TestCase as TestCase
 import com.kms.katalon.core.testdata.TestData as TestData
-import org.openqa.selenium.Keys
-
+import org.openqa.selenium.Keys as Keys
 import com.kms.katalon.core.testobject.TestObject as TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
@@ -21,14 +20,15 @@ WebUI.openBrowser('')
 
 WebUI.navigateToUrl('http://localhost:3000/login')
 
-WebUI.setText(findTestObject('Object Repository/Page_React App/input_username_username'), 'user')
+WebUI.setText(findTestObject('Object Repository/Page_React App/input_username_username'), 'joepvantest')
 
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_React App/input_Password_password'), 'bTVIq92haJs=')
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_React App/input_Password_password'), 'QO01GCya7mDUanYLjRBiVQ==')
 
 WebUI.sendKeys(findTestObject('Object Repository/Page_React App/input_Password_password'), Keys.chord(Keys.ENTER))
 
 WebUI.delay(1)
 
-assert !(WebUI.getUrl().equals("http://localhost:3000/login"));
+assert !(WebUI.getUrl().equals('http://localhost:3000/login'))
 
 WebUI.closeBrowser()
+

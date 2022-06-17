@@ -20,11 +20,11 @@ WebUI.openBrowser('')
 
 WebUI.navigateToUrl('http://localhost:3000/register')
 
-WebUI.setText(findTestObject('Object Repository/Page_React App/input_username_username'), 'user')
+WebUI.setText(findTestObject('Object Repository/Page_React App/input_username_username'), 'joepvantest')
 
 WebUI.setText(findTestObject('Object Repository/Page_React App/input_Email Address_email'), 'user@gmail.com')
 
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_React App/input_Password_password'), 'bTVIq92haJs=')
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_React App/input_Password_password'), 'QO01GCya7mDUanYLjRBiVQ==')
 
 WebUI.click(findTestObject('Object Repository/Page_React App/button_Sign Up'))
 

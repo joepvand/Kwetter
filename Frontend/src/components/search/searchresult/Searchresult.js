@@ -13,7 +13,7 @@ function Searchresult({result}) {
  let history = useHistory();
   return (
     <>
-      <Column gap={2} onClick={() => history.push("/user/" + result.username)}>
+      <Column gap={2} onClick={() => history.push("/user/" + result.ownerId)}>
         <Row alignItems={'center'}>
           <Item position={'middle'}>
             <div >
@@ -22,7 +22,7 @@ function Searchresult({result}) {
           </Item>
           <Info useStyles={useChatzInfoStyles}>
             <InfoTitle>{result.displayName}</InfoTitle>
-            <InfoSubtitle>{result.bio}</InfoSubtitle>
+            <InfoSubtitle>{result.biography}</InfoSubtitle>
           </Info>
           
         </Row>

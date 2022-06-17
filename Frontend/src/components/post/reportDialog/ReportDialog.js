@@ -19,10 +19,9 @@ export default function ReportDialog({open, postId}) {
 
     const reportPost =() => {
       ReportService.Add(postId, "").then(result => {
-        alert.info(result);
+          alert.info(result);
         })
       .catch(error => {
-        console.log(error.response)
         alert.error(error.response.data.message);
       }) }
     
