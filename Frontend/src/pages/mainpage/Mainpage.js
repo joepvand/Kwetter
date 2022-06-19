@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react'
 import WritepostBar from '../../components/writepostbar/WritepostBar'
-import Postlist from "../../components/post/postlist/Postlist";
-import "./Mainpage.css";
+import Postlist from '../../components/post/postlist/Postlist'
+import './Mainpage.css'
 function Mainpage() {
   return (
     <div>
-      <div className="posts">
-      <WritepostBar/>
+      <div className='posts'>
+        <WritepostBar />
 
-        <Postlist/>
+        <Postlist />
       </div>
     </div>
   )
 }
 
-export default Mainpage;
+export default Mainpage

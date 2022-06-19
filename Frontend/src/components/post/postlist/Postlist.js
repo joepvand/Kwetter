@@ -1,30 +1,28 @@
-import React from "react";
-import Post from "../post/Post";
-import { useState, useEffect } from "react";
+import React from 'react'
+import Post from '../post/Post'
+import { useState, useEffect } from 'react'
 import PostService from '../../../services/post.service'
-export default function Postlist({username}) {
-  const [posts, setPosts] = useState();
-  const [loading, setLoading] = useState(true);
+export default function Postlist({ username }) {
+  const [posts, setPosts] = useState()
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
-    if (username){
-      PostService.getPostByUserId(username).then(result => {
+    if (username) {
+      PostService.getPostByUserId(username).then((result) => {
         setPosts(result)
-        setLoading(false);
+        setLoading(false)
       })
-    }
-    else{
-      PostService.getPostsFromFollowing().then(result=> {
-        setPosts(result)
-        setLoading(false);
-      })
-      .catch(er => {})
+    } else {
+      PostService.getPostsFromFollowing()
+        .then((result) => {
+          setPosts(result)
+          setLoading(false)
+        })
+        .catch((er) => {})
     }
   }, [username])
-  return (
-    !loading ? 
+  return !loading ? (
     <div>
       {posts?.map((post, idx) => (
-        
         <Post
           key={idx}
           postId={post.id}
@@ -34,11 +32,8 @@ export default function Postlist({username}) {
           datePosted={post.tweeterId}
         ></Post>
       ))}
-      
     </div>
-    : 
-    <div data-testid='loading'>
-      Loading...
-    </div>
+  ) : (
+    <div data-testid='loading'>Loading...</div>
   )
 }

@@ -1,11 +1,10 @@
-import axios from "axios";
-const API_URL = process.env.REACT_APP_API_URL;
+import axios from 'axios'
+const API_URL = process.env.REACT_APP_API_URL
 const instance = axios.create({
-    baseURL: API_URL,
-    timeout: 5000,
-  });
+  baseURL: API_URL,
+  timeout: 5000
+})
 class AuthService {
-
   login(username, password) {
     const params = new URLSearchParams()
     params.append('grant_type', 'password')
@@ -14,68 +13,63 @@ class AuthService {
     params.append('scope', 'apiscope')
     params.append('username', username)
     params.append('password', password)
-    
-    return instance
-      .post("/connect/token", params)
-      .then(response => {
-        if (response.data.access_token) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-        }
 
-        return response.data;
-      });
+    return instance.post('/connect/token', params).then((response) => {
+      if (response.data.access_token) {
+        localStorage.setItem('user', JSON.stringify(response.data))
+      }
+
+      return response.data
+    })
   }
 
   logout() {
-    localStorage.removeItem("user");
-    
-    window.location.reload();
+    localStorage.removeItem('user')
 
+    window.location.reload()
   }
 
   register(username, email, password) {
-    return instance.post(API_URL + "/Auth", {
+    return instance.post(API_URL + '/Auth', {
       Username: username,
       Email: email,
       Password: password
-    });    
+    })
   }
-  async isLoggedin(){
+  async isLoggedin() {
     var token = JSON.parse(localStorage.getItem('user'))
     if (token) {
-      return fetch(process.env.REACT_APP_API_URL+"/Profile", {
-        headers:{
-         'Authorization': 'Bearer ' + token.access_token
+      return fetch(process.env.REACT_APP_API_URL + '/Profile', {
+        headers: {
+          Authorization: 'Bearer ' + token.access_token
         }
-      }).then(response => {
-        
+      }).then((response) => {
         if (response) {
-          return true;
+          return true
         }
         return false
       })
-       }
+    }
   }
   async getCurrentUser() {
     var token = JSON.parse(localStorage.getItem('user'))
     if (token) {
-      return fetch(process.env.REACT_APP_API_URL+"/Profile", {
-        headers:{
-         'Authorization': 'Bearer ' + token.access_token
-        }
-      }).then(response => {
-        if (response) {
-          const json = response.json();
-          return json
+      return fetch(process.env.REACT_APP_API_URL + '/Profile', {
+        headers: {
+          Authorization: 'Bearer ' + token.access_token
         }
       })
-      .catch(error => {
-        this.logout();
-      })
-      
-       }
+        .then((response) => {
+          if (response) {
+            const json = response.json()
+            return json
+          }
+        })
+        .catch((error) => {
+          this.logout()
+        })
     }
-     
+  }
 }
 
-export default new AuthService();
+export default new AuthService()
