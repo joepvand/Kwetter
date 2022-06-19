@@ -39,16 +39,16 @@ jobs:
         docker build . --file ./AuthService.Dockerfile --tag ghcr.io/joepvand/kwetter/authservice:latest
         echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} -p ${{secrets.GITHUB_TOKEN}}
         docker push ghcr.io/joepvand/kwetter/authservice:latest
-  build_NotificationService:
+  build_PostScanner:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
         cd Backend
-        docker build . --file ./NotificationService.Dockerfile --tag ghcr.io/joepvand/kwetter/notificationservice:latest
+        docker build . --file ./PostScanner.Dockerfile --tag ghcr.io/joepvand/kwetter/postscanner:latest
         echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} -p ${{secrets.GITHUB_TOKEN}}
-        docker push ghcr.io/joepvand/kwetter/notificationservice:latest
+        docker push ghcr.io/joepvand/kwetter/postscanner:latest
   build_Gateway:
     runs-on: ubuntu-latest
     steps:
