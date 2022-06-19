@@ -71,10 +71,9 @@ export default function Post({
   };
   
   useEffect(() => {
-
         userService.getById(postedBy).then(user => setPoster(user));
         commentService.GetByPost(postId).then(cmt => setComments(cmt));
-  }, [postedBy])
+  }, [postedBy, postId])
 
   return (
     <>

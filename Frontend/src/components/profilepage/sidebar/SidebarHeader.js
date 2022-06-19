@@ -1,10 +1,8 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { Divider, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import "./SidebarHeader.css";
-import FollowButton from "./followButton/FollowButton";
-import authService from "../../../services/auth.service";
-import { useState } from "react";
+
 
 const WhiteTextTypography = withStyles({
   root: {

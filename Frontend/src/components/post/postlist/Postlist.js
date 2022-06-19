@@ -2,11 +2,9 @@ import React from "react";
 import Post from "../post/Post";
 import { useState, useEffect } from "react";
 import PostService from '../../../services/post.service'
-import commentService from "../../../services/comment.service";
 export default function Postlist({username}) {
   const [posts, setPosts] = useState();
   const [loading, setLoading] = useState(true);
-  const [comments, setComments] = useState();
   useEffect(() => {
     if (username){
       PostService.getPostByUserId(username).then(result => {
